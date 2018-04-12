@@ -5,11 +5,11 @@
 # Site
 title: Berry's Home
 subtitle: Welcome to Berry's Website
-description: a personal blog, album and record of berry
-keywords: berry, huang, 黄玉峰, 博客, 日志
+description: a personal blog and record of berry
+keywords: berry, huang, 黄玉峰, 博客, 日志, 随笔
 author: Berry Huang
 language: mul
-timezone: China
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -55,8 +55,8 @@ index_generator:
   
 # Category & Tag
 default_category: personal website
-category_map: blog, journal, album
-tag_map: it, technology, front end, live 
+category_map: blog, note, essay
+tag_map: IT, technology, front end, live 
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
