@@ -17,9 +17,9 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 
 ### Contact
 
-* Email:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[berryhuang99@gmail.com](mailto:berryhuang99@gmail.com)
-* Github:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[github.com/berryhuang99](https://github.com/berryhuang99/)
-* Linkedin:&ensp;&ensp;&ensp;&ensp;&ensp;[黄玉峰](https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/)
+* <i class="fa fa-fw fa-lg fa-envelope"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[berryhuang99@gmail.com](mailto:berryhuang99@gmail.com)
+* <i class="fa fa-fw fa-lg fa-github"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[github.com/berryhuang99](https://github.com/berryhuang99/)
+* <i class="fa fa-fw fa-lg fa-linkedin"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[黄玉峰](https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/)
 
 ### Education
 
@@ -30,8 +30,10 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 
 ### Skill
 
-* IT:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;JavaScript/Css3/Html5, React, Redux, Vue, ES6, Sass, Webpack, Java, C/C++, Nodejs, 微信小程序...
-* Media:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;PhotoShop, Premiere, After Effects...
+* IT:
+>    JavaScript/Css3/Html5, React, Redux, Vue, ES6, Sass, Webpack, Java, C/C++, Nodejs, 微信小程序...
+* Media:
+>    PhotoShop, Premiere, After Effects...
 
 ### Experiment
 
