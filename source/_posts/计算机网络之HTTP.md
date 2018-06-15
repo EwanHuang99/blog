@@ -1,6 +1,6 @@
 ---
 title: 计算机网络之HTTP
-date: 2017-10-23 21:41:31
+date: 2017-10-31 21:41:31
 tags: [basis, network]
 categories: note
 ---
@@ -39,8 +39,8 @@ categories: note
 
 ### 常见状态码
 ```code
-100 Continue    //继续。客户端应继续其请求
-101 Switching Protocols //切换协议。服务器根据客户端的请求切换更高级协议
+100	Continue    //继续。客户端应继续其请求
+101	Switching Protocols //切换协议。服务器根据客户端的请求切换更高级协议
 200	OK  //请求成功。一般用于GET与POST请求
 204	No Content	//无内容。服务器成功处理，但未返回内容
 301	Moved Permanently	//永久移动。请求的资源已被永久的移动到新URI
@@ -91,16 +91,35 @@ categories: note
     用来说明`请求类型`,要访问的`资源`以及所使用的`HTTP版本`。
 - 请求头部
     说明服务器要使用的附加信息。如主机地址`HOST`，客户端定义的代理信息`User-Agent`等辅助信息。
-    ````code
-    POST / HTTP1.1  //请求行
-    Host:huangyufeng.com  //请求头部begin
-    User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)
-    Content-Type:application/x-www-form-urlencoded
-    Content-Length:40
-    Connection: Keep-Alive  //请求头部end
-    //空行
-    name=Professional%20Ajax&publisher=Wiley    //数据
-    ````
+
+|属性|属性值|作用|
+|:-:|:-:|:-|
+|Accept|MIME类型（text/html）|请求接受响应数据类型|
+|Accept-Encoding|编码格式|浏览器支持的编码格式|
+|Cookie|交互信息（jsessionid=123）|本地存储交互所需信息|
+|Host|host url|指定被请求资源的Internet主机和端口号|
+|Referer|url|表示这个请求是从哪个URL过来的|
+|Cache-Control|no-cache（依据服务响应处理）、no-store、public（所有内容都将被缓存）、private（内容只缓存到私有缓存中）...|指定请求和响应遵循的缓存机制|
+|Date|时间|表示消息发送的时间|
+|User-Agent|用户代理标识|标识客户端的运行环境|
+|Orign|url|仅POST所有，类似Referer，用于检测数据来源，解决跨域问题。但不同于Referer，不涉及用户隐私|
+|Connection|close/keepalive|是否开启长连接|
+|Keep-Alive|300|开启长连接时的连接时长（秒）|
+|If-Modified-Since|本地数据上一次修改时间|询问服务器数据是否变动|
+|Access-Control-Request-Method|POST,GET,OPTIONS,DELETE|预检测实际使用请求方法|
+|Access-Control-Request-Headers|X-PINGOTHER, Content-Type...|预检测实际使用请求头属性|
+
+- 样例
+````code
+POST / HTTP1.1  //请求行
+Host:huangyufeng.com  //请求头部begin
+User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)
+Content-Type:application/x-www-form-urlencoded
+Content-Length:40
+Connection: Keep-Alive  //请求头部end
+//空行
+name=Professional%20Ajax&publisher=Wiley    //数据
+````
 
 ## 返回消息
 
@@ -110,6 +129,23 @@ categories: note
     包含HTTP版本号及响应状态码。
 - 消息报头
     包含响应的信息和数据类型等内容。
+
+|属性|属性值|作用|
+|:-:|:-:|:-|
+|Date|时间|消息发送时间|
+|Server|服务器信息|提供服务器信息|
+|Content-type|MIME类型（text/plain）|响应内容数据类型|
+|Content-Encoding|编码格式|内容编码格式（未编码压缩过的数据不可携带）|
+|Last-Modified|时间|服务端数据最后修改时间|
+|Expires|时间|客户端缓存过期时间|
+|Cache-Control|no-cache（依据服务响应处理）、no-store、public（所有内容都将被缓存）、private（内容只缓存到私有缓存中）...|指定请求和响应遵循的缓存机制|
+|Set-Cookie|cookie信息|覆盖浏览器中的cookie信息|
+|Access-Control-Allow-Origin|*、URL|允许跨域访问的请求源头|
+|Access-Control-Allow-Methods|POST,GET,OPTIONS,DELETE|允许跨域访问的方法|
+|Access-Control-Allow-Headers|header属性|允许附加的属性类型|
+
+
+- 样例
     ````code
     HTTP/1.1 200 OK //状态行
     Date: Fri, 22 May 2009 06:07:21 GMT //消息报头begin

@@ -13,7 +13,7 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 * Name:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;黄玉峰
 * Sex:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;男
 * Birth:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;1996.10
-* Direction:&ensp;&ensp;&ensp;&ensp;前端开发
+* Direction:&ensp;&ensp;&ensp;&ensp;前端开发，全栈开发
 
 ### Contact
 
@@ -30,9 +30,12 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 
 ### Skill
 
-* IT:
+**IT:**
+
 >    JavaScript/Css3/Html5, React, Redux, Vue, ES6, Sass, Webpack, Java, C/C++, Nodejs, 微信小程序...
-* Media:
+
+**Media:**
+
 >    PhotoShop, Premiere, After Effects...
 
 ### Experiment
@@ -44,6 +47,7 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 
 ### Hobby
 
+* Yoga
 * Movie
 * Music
 * Art
