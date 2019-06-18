@@ -159,6 +159,24 @@ name=Professional%20Ajax&publisher=Wiley    //数据
     </html> //正文end
     ````
 
+## Get与Post
+
+### 区别
+
+1. GET在浏览器回退时是无害的，而POST会再次提交请求；
+2. GET产生的URL地址可以被Bookmark，而POST不可以；
+3. GET请求会被浏览器主动cache，而POST不会，除非手动设置； 
+4. GET请求的参数会完整的被保存在历史记录里，POST不会；
+5. GET请求参数放在URL中，POST放在request body中；
+6. GET请求只能进行url编码，POST请求支持多种编码方式； 
+7. 对于参数类型，GET只接受ASCII字符，而POST没有限制； 
+8. GET请求在URL中传递的参数是有长度限制的，而POST没有； 
+9. GET比POST更不安全，因为参数直接暴露在URL中，所以不能传递敏感信息；
+
+### Get请求可以通过body携带数据吗？
+
+事实上，所有HTTP请求的本质都是一个TCP数据包而已，只是在应用层中规定了如何使用TCP打包数据而已，TCP数据包本身是没有区别的。因此，Get请求同样可以在body中添加数据，不过许多服务器会忽略Get请求的body部分。此外，有的浏览器在发送POST请求时，会将POST的header部分与body部分分成两个TCP包发送，当第一个数据包发送成功收到ACK后再发送第二个数据包。
+
 ## HTTP1.0，1.1，2.0
 
 ### HTTP1.0与HTTP1.1的区别
@@ -196,6 +214,8 @@ name=Professional%20Ajax&publisher=Wiley    //数据
 ## HTTPS
 
 &ensp;&ensp;&ensp;&ensp;为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。
+
+![https.png](https.png)
 
 ### HTTPS与HTTP的区别
 

@@ -138,25 +138,25 @@ JS中除了前面提及的基本类型外，还有**引用类型**。引用类�
         1. 使用new 操作符后跟Object 构造函数：
         ```js
         var person = new Object();
-        person.name = 'berry';
+        person.name = 'Ewan';
         ```
 
         2. 使用字面量表示法：
         ```js
         var person = {
-            name : 'berry',
+            name : 'Ewan',
         }
         ```
     - 获取对象属性的两种方法：
 
         1. 点操作符：
         ```js
-        person.name // berry
+        person.name // Ewan
         ```
 
         2. 方括号语法(要访问的属性应以**字符串**的形式出现在方括号中)：
         ```js
-        person['name']  // berry
+        person['name']  // Ewan
         ```
     - 转换字符串方法:
 
@@ -366,14 +366,14 @@ this指向法则：
 
 ```js
 function fn() {
-    this.name = 'berry';
+    this.name = 'Ewan';
     return 1;
 }
 var f = new fn();
-alert(f.name);  // 'berry'
+alert(f.name);  // 'Ewan'
 
 function fn2() {
-    this.name = 'berry';
+    this.name = 'Ewan';
     return {};
 }
 var f2 = new fn2();
@@ -410,6 +410,18 @@ function createAccessor(obj, propName, value) {
 ```
 
 > JS中没有重载
+
+## 补充
+
+### 判断对象内容（属性）相等
+除了遍历对象的每个属性、方法对两个对象进行比较外，还可以利用字符串的比较特点，将对象转换成字符串进行比较。例如`toString()`方法（仅适用于Array等重载了toString()方法的对象类型）和`JSON.stringify`方法。
+
+```js
+const a = {name: "huangyufeng"};
+const b = {name: "huangyufeng"};
+JSON.stringify(a) === JSON.stringify(b);
+// true
+```
 
 ## 参考
 《JavaScript高级程序设计》

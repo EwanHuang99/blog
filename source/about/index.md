@@ -17,8 +17,8 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 
 ### Contact
 
-* <i class="fa fa-fw fa-lg fa-envelope"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[berryhuang99@gmail.com](mailto:berryhuang99@gmail.com)
-* <i class="fa fa-fw fa-lg fa-github"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[github.com/berryhuang99](https://github.com/berryhuang99/)
+* <i class="fa fa-fw fa-lg fa-envelope"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[Ewanhuang99@gmail.com](mailto:Ewanhuang99@gmail.com)
+* <i class="fa fa-fw fa-lg fa-github"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[github.com/Ewanhuang99](https://github.com/Ewanhuang99/)
 * <i class="fa fa-fw fa-lg fa-linkedin"></i>:&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;[黄玉峰](https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/)
 
 ### Education
@@ -43,7 +43,7 @@ Welcome to my [blog](http://huangyufeng.com)! This blog is based on [Hexo](https
 * 2015~2018 东大在线网络传媒工作室 设计部部长
     负责校内网站设计与开发，包括东北大学官网，东北大学新闻网，东北大学成人教育网等。
 * 2017.11 外包德国费森尤斯医药集团（上海）有限公司 透亮人生公众号 前端开发
-    负责开发透亮人生公众号的前端界面与具体交互，实现用户注册、头像裁剪上传等功能，并基于Vue开发类似支付宝蚂蚁森林的[植树小游戏](https://github.com/BerryHuang99/plant-tree)。
+    负责开发透亮人生公众号的前端界面与具体交互，实现用户注册、头像裁剪上传等功能，并基于Vue开发类似支付宝蚂蚁森林的[植树小游戏](https://github.com/EwanHuang99/plant-tree)。
 
 ### Hobby
 

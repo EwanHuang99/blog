@@ -11,12 +11,12 @@ categories: note
 - Object实例创建
 ```js
 var person = new Object();
-person.name = 'berry';
+person.name = 'Ewan';
 ```
 - 字面量创建
 ```js
 var person = {
-    name: 'berry',
+    name: 'Ewan',
     age: 20
 };
 ```
@@ -26,7 +26,7 @@ function Person(name, age) {
     this.name = name;
     this.age = age;
 }
-var berry = new Person('berry', 20);
+var Ewan = new Person('Ewan', 20);
 ```
 
 ### 数据属性与访问器属性
@@ -81,11 +81,11 @@ alert(book.edition); //2
 每个`Function`对象都有一个`prototype`属性，该属性指向通过调用构造函数而创建的那个对象实例的原型对象。所有通过同一个构造函数创建的对象都共享一个`prototype`。
 ```js
 function Person() {}
-Person.prototype.name = 'berry';
+Person.prototype.name = 'Ewan';
 var person1 = new Person();
 var person2 = new Person();
-alert(person1.name);    // 'berry'
-alert(person2.name);    // 'berry'
+alert(person1.name);    // 'Ewan'
+alert(person2.name);    // 'Ewan'
 ```
     每个函数的`prototype`上都默认有一个`constractor`属性，该属性指向`prototype`所属的函数。如上例：
     ```js
@@ -165,7 +165,7 @@ function Son(name) {
     Person.call(this);
     this.name = name;
 }
-var son = new Son('berry');
+var son = new Son('Ewan');
 son instanceof Person; // false
 son instanceof Son; //true
 ```
@@ -183,7 +183,7 @@ function Son(name) {
     instance.name = name;
     return instance;
 }
-var son = new Son('berry');
+var son = new Son('Ewan');
 son instanceof Person; // true
 son instanceof Son; // false
 ```

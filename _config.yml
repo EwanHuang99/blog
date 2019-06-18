@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Berry's Home
-subtitle: Welcome to Berry's Website
-description: a personal blog and record of berry
-keywords: berry, huang, 黄玉峰, 博客, 日志, 随笔
-author: Berry Huang
+title: Ewan's
+subtitle: Welcome to Ewan's Website
+description: a personal blog and record of Ewan
+keywords: Ewan, huang, 黄玉峰, 博客, 日志, 随笔
+author: Ewan Huang
 language: mul
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://huangyufeng.com
+url: https://huangyufeng.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -79,6 +79,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/BerryHuang99/blog
+  repo: https://github.com/EwanHuang99/blog
   branch: gh-pages
   message: new post
