@@ -1,6 +1,6 @@
 ---
 title: 计算机网络之WebSocket
-date: 2017-11-08 15:00:15
+date: 2017-02-12 15:00:15
 tags: [basis, network, js, html5]
 ---
 **WebSocket**是HTML5开始提供的一种在单个TCP连接上进行全双工通讯的协议。在WebSocket API中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。WebSocket 协议在2008年诞生，2011年成为国际标准。

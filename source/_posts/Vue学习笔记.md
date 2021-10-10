@@ -1,6 +1,6 @@
 ---
 title: Vue学习笔记
-date: 2017-12-15 14:23:52
+date: 2017-12-28 14:23:52
 tags: [vue, js]
 categories: note
 ---

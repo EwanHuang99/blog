@@ -36,7 +36,7 @@
             {% endif %}
               <p class="site-author-name" itemprop="name">{{ theme.author }}</p>
               <p class="site-description motion-element" itemprop="description">
-                a web developer &amp; lover of life
+                A front-end developer
               </p>
           </div>
 
@@ -45,7 +45,7 @@
             {% if config.archive_dir != '/' and site.posts.length > 0 %}
               <div class="site-state-item site-state-posts">
               {% if theme.menu.archives %}
-                <a href="{{ url_for(theme.menu.archives).split('||')[0] | trim }}">
+                <a href="{{ url_for(config.archive_dir) | trim }}">
               {% else %}
                 <a href="{{ url_for(config.archive_dir) }}">
               {% endif %}

@@ -1,6 +1,6 @@
 ---
 title: 正则之NFA与DFA
-date: 2018-04-05 22:35:15
+date: 2017-12-15 22:35:15
 tags: [RegExp, advanced]
 categories: note
 ---
