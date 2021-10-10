@@ -39,14 +39,15 @@ var wisdomsS = [
     'Work makes the workman.',
     'Murmur, a little sadly, how Love fled',
     'Pain past is pleasure.',
-    'Storms make trees take deeper roots.'
+    'Storms make trees take deeper roots.',
+    'A great ship asks for deep waters.'
 ];
 
 $(document).ready(function() {
     let banner = document.getElementById('banner');
     if (banner) {
         let width = window.screen.width;
-        let i = parseInt((Math.random() * 20 + 1));
+        let i = Math.floor((Math.random() * 20 + 1));
         if (width > 768) {
             banner.style.backgroundImage = 'url(/images/bg/bg-lg-' + i + '.jpg)';
         } else {

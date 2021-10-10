@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="basis,network," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;IP协议是TCP&#x2F;IP协议簇中的核心协议，也是TCP&#x2F;IP的载体。所有的TCP，UDP，ICMP及IGMP数据都以IP数据报格式传输。 特点&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;IP提供不可靠的，无连接的数据传送服务。 不可靠&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;不可靠指它不能保证IP数据报能成功到达目的地。IP仅提供最好的传输服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络之IP">
+<meta property="og:url" content="https://huangyufeng.com/2017/01/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BIP/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;IP协议是TCP&#x2F;IP协议簇中的核心协议，也是TCP&#x2F;IP的载体。所有的TCP，UDP，ICMP及IGMP数据都以IP数据报格式传输。 特点&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;IP提供不可靠的，无连接的数据传送服务。 不可靠&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;不可靠指它不能保证IP数据报能成功到达目的地。IP仅提供最好的传输服">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-01-23T10:30:20.000Z">
+<meta property="article:modified_time" content="2021-10-10T09:23:39.792Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="basis">
+<meta property="article:tag" content="network">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/01/23/计算机网络之IP/"/>
+
+
+
+
+
+  <title>计算机网络之IP | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Personal notes & informal essays.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/01/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BIP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">计算机网络之IP</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-23T18:30:20+08:00">
+                2017-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&ensp;&ensp;&ensp;&ensp;IP协议是TCP/IP协议簇中的核心协议，也是TCP/IP的载体。所有的TCP，UDP，ICMP及IGMP数据都以IP数据报格式传输。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>&ensp;&ensp;&ensp;&ensp;IP提供<code>不可靠</code>的，<code>无连接</code>的数据传送服务。</p>
+<h3 id="不可靠"><a href="#不可靠" class="headerlink" title="不可靠"></a>不可靠</h3><p>&ensp;&ensp;&ensp;&ensp;不可靠指它不能保证IP数据报能成功到达目的地。IP仅提供最好的传输服务。当发生某种错误时，如某个路由器暂时用完了缓冲区，IP有一个简单的错误处理算法：丢弃该数据报，然后发送ICMP消息给信源。任何要求的可靠性必须由上层来提供。</p>
+<h3 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h3><p>&ensp;&ensp;&ensp;&ensp;无连接指IP并不维护任何关于后续数据报的状态信息。每个数据报的处理是相互独立的。IP数据报可以不按发送顺序接收。如果一信源向相同的信宿发送两个连续的数据报（先是A，然后是B）每个数据报都是独立的进行路由选择，可能选择不同的路线，因此B可能在A到达之前先到达。</p>
+<h2 id="IP路由"><a href="#IP路由" class="headerlink" title="IP路由"></a>IP路由</h2><h3 id="路由选择"><a href="#路由选择" class="headerlink" title="路由选择"></a>路由选择</h3><p>&ensp;&ensp;&ensp;&ensp;IP可以从TCP，UDP，ICMP，IGMP接收数据报并进行发送，或者从一个接口接收数据报并进行发送。IP层在内存中有一个路由表，当收到一份数据报并进行发送时，都要对该表进行搜索。当数据报来自某个接口时，IP首先检查目的IP地址是否为本机的IP地址或广播地址。如果是，数据报就被送到由IP首部协议字段所指定的协议模块进行处理。如果数据报的目的不是这些地址，那么：(1)如果IP层被设置成路由器的功能，那么就对数据报进行转发。(2)数据报被丢弃。</p>
+<h3 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h3><p>&ensp;&ensp;&ensp;&ensp;路由表是指路由器或者其他互联网网络设备上存储的一张路由信息表，该表中存有到达特定网络终端的路径，在某些情况下，还有一些与这些路径相关的度量。</p>
+<ul>
+<li>目的IP地址：<br>  可以是一个完整的主机地址，也可以是一个网络地址。</li>
+<li>下一跳地址：<br>  一个直接相连网络上的路由器。下一跳路由器不一定是最终目的地，但它可以把传送给它的数据报转发到目的。</li>
+<li>标志：<br>  其中一个标志指明目的IP地址是网络地址还是主机地址，另一个标志指明下一站路由器是否为真正的下一跳路由器还是一个直连接口。</li>
+</ul>
+<h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><p>&ensp;&ensp;&ensp;&ensp;IP地址的长度为32位(共有2^32个IP地址)，分为4段，每段8位，用十进制数字表示，每段数字范围为0～255，段与段之间用句点隔开。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>&ensp;&ensp;&ensp;&ensp;IP地址按分段划分成了A~E五中类型。</p>
+<ul>
+<li>A类型：<br>  A类地址为政府机构所用，第1个字节为网络地址，后3个字节为主机地址。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 XXXXXXX . (XXXXXXXX . XXXXXXXX . XXXXXXXX)    //地址范围1.0.0.0-127.255.255.255</span><br></pre></td></tr></table></figure></li>
+<li>B类型：<br>  B类型地址为大中型企业所用，第1,2个字节为网络地址，后两个字节为主机地址。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 XXXXXX . XXXXXXXX. (XXXXXXXX . XXXXXXXX)  //地址范围：128.0.0.0-191.255.255.255</span><br></pre></td></tr></table></figure></li>
+<li>C类型：<br>  C类型用于小型网络，前三个字节为网络号，最后一个字节为主机号。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">110 XXXXX . XXXXXXXX . XXXXXXXX . (XXXXXXXX)  //地址范围：192.0.0.0-223.255.255.255</span><br></pre></td></tr></table></figure></li>
+<li>D类型：<br>  D类地址用于多点广播，即组播，1对多发送。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1110 XXXX . XXXXXXXX . XXXXXXXX . XXXXXXXX  //地址范围：224.0.0.0-239.255.255.255</span><br></pre></td></tr></table></figure></li>
+<li>E类型：<br>  E类型为特殊网址。以11110开头。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11110 XXX . XXXXXXXX . XXXXXXXX . XXXXXXXX  //地址范围：240.0.0.0-255.255.255.254</span><br></pre></td></tr></table></figure></li>
+<li>广播地址：<br>  区别于组播地址，广播地址是对同一路由范围内的<strong>所有</strong>主机广播。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11111111 . 11111111 . 11111111 . 11111111 //地址：255.255.255.255</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><p>&ensp;&ensp;&ensp;&ensp;通俗地说，子网掩码是一种能判定某一IP地址所在子网（广播域），以及与自己在同一子网（广播域）内的其他主机IP地址范围记录方法。</p>
+<ul>
+<li><p>表示方式：</p>
+<ol>
+<li>主机/子网掩码(2进制) 如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11000000.10101000.00000001.00000000/11111111.11111111.11111111.11000000</span><br></pre></td></tr></table></figure></li>
+<li>主机/子网掩码(10进制) 如：192.168.1.0/255.255.255.192</li>
+<li>主机/子网掩码中1的个数 如：192.168.1.0/26</li>
+</ol>
+</li>
+<li><p>计算子网范围：</p>
+<ol>
+<li>将主机地址转化为2进制编码；</li>
+<li>主机编码位置对应子网掩码中1的部分标识此部分相同的IP地址与当前主机IP地址同属同一子网（对应为0的全为1时表示广播地址）。<br>如：192.168.1.199/26与192.168.1.200/24:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">11000000.10101000.00000001.11000111 // 192.168.1.199二进制</span><br><span class="line">11111111.11111111.11111111.11000000 // 26对应子网掩码   </span><br><span class="line">//  子网范围：192.168.1.192-192.168.1.254</span><br><span class="line">11000000.10101000.00000001.11001000 // 192.168.1.200二进制</span><br><span class="line">//  证明两个网址同属一个子网内</span><br></pre></td></tr></table></figure>
+<h2 id="IPV4"><a href="#IPV4" class="headerlink" title="IPV4"></a>IPV4</h2></li>
+</ol>
+</li>
+</ul>
+<p>&ensp;&ensp;&ensp;&ensp;IPv4，是互联网协议（Internet Protocol | IP）的第四版，也是第一个被广泛使用，构成现今互联网技术的基础的协议。</p>
+<h3 id="地址格式"><a href="#地址格式" class="headerlink" title="地址格式"></a>地址格式</h3><p>&ensp;&ensp;&ensp;&ensp;IPv4中规定IP地址长度为32（按TCP/IP参考模型划分) ，即有2^32-1个地址。</p>
+<h3 id="地址分布"><a href="#地址分布" class="headerlink" title="地址分布"></a>地址分布</h3><p>&ensp;&ensp;&ensp;&ensp;中国互联网络信息中心（CNNIC）表示，全球互联网IP地址刚刚突破了一个新的关键临界点，IANA可分配IPv4地址剩余量已不足10%。CNNIC同时呼吁：应尽快从国家层面加快部署向IPv6地址的平稳过渡，避免在下一代互联网发展中掉队。</p>
+<h2 id="IPV6"><a href="#IPV6" class="headerlink" title="IPV6"></a>IPV6</h2><h3 id="地址格式-1"><a href="#地址格式-1" class="headerlink" title="地址格式"></a>地址格式</h3><p>&ensp;&ensp;&ensp;&ensp;IPv6的地址长度为128b，是IPv4地址长度的4倍。于是IPv4点分十进制格式不再适用，采用十六进制表示。IPv6有3种表示方法：</p>
+<ol>
+<li>冒分十六进制表示法，如：ABCD:EF01:2345:6789:ABCD:EF01:2345:6789；</li>
+<li>0位压缩表示法，在某些情况下，一个IPv6地址中问可能包含很长的一段0，可以把连续的一段0压缩为“::”。但为保证地址解析的唯一性，地址中”::”只能出现一次。如：FF01:0:0:0:0:0:0:1101 → FF01::1101；</li>
+<li>内嵌IPv4地址表示法，为了实现IPv4-IPv6互通，IPv4地址会嵌入IPv6地址中，此时地址常表示为：X:X:X:X:X:X:d.d.d.d，前96b采用冒分十六进制表示，而最后32b地址则使用IPv4的点分十进制表示，如：::FFFF:192.168.0.1</li>
+</ol>
+<h3 id="地址分类"><a href="#地址分类" class="headerlink" title="地址分类"></a>地址分类</h3><ol>
+<li>单播地址</li>
+<li>组播地址</li>
+<li>任播地址： 用来标识一组接口（通常这组接口属于不同的节点）。发送到任播地址的数据报文被传送给此地址所标识的一组接口中距离源节点最近（根据使用的路由协议进行度量）的一个接口。</li>
+<li>广播地址</li>
+</ol>
+<h3 id="地址配置协议"><a href="#地址配置协议" class="headerlink" title="地址配置协议"></a>地址配置协议</h3><p>&ensp;&ensp;&ensp;&ensp;IPv6使用两种地址自动配置协议，分别为无状态地址自动配置协议（SLAAC）和IPv6动态主机配置协议（DHCPv6）。</p>
+<ul>
+<li><p>无状态地址自动配置协议<br>  无状态地址自动配置的核心是不需要额外的服务器管理地址状态，主机可自行计算地址进行地址自动配置。</p>
+</li>
+<li><p>IPv6动态主机配置协议<br>  IPv6动态主机配置协议DHCPv6是由IPv4场景下的DHCP发展而来。客户端通过向DHCP服务器发出申请来获取本机IP地址并进行自动配置，DHCP服务器负责管理并维护地址池以及地址与客户端的映射信息。</p>
+</li>
+</ul>
+<h3 id="对比IPV4"><a href="#对比IPV4" class="headerlink" title="对比IPV4"></a>对比IPV4</h3><ul>
+<li>地址数量提升</li>
+<li>IPv6使用更小的路由表。IPv6的地址分配一开始就遵循聚类（Aggregation）的原则，这使得路由器能在路由表中用一条记录（Entry）表示一片子网，大大减小了路由器中路由表的长度，提高了路由器转发数据包的速度。</li>
+<li>IPv6增加了增强的组播（Multicast）支持以及对流的控制（Flow Control），这使得网络上的多媒体应用有了长足发展的机会，为服务质量（QoS，Quality of Service）控制提供了良好的网络平台。</li>
+<li>IPv6加入了对自动配置（Auto Configuration）的支持。这是对DHCP协议的改进和扩展，使得网络（尤其是局域网）的管理更加方便和快捷。</li>
+<li>IPv6具有更高的安全性。在使用IPv6网络中用户可以对网络层的数据进行加密并对IP报文进行校验，在IPV6中的加密与鉴别选项提供了分组的保密性与完整性。极大的增强了网络的安全性。</li>
+<li>允许扩充。如果新的技术或应用需要时，IPV6允许协议进行扩充。</li>
+<li>更好的头部格式。IPV6使用新的头部格式，其选项与基本头部分开，如果需要，可将选项插入到基本头部与上层数据之间。这就简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。</li>
+<li>新的选项。IPV6有一些新的选项来实现附加的功能。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/basis/" rel="tag"># basis</a>
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/" rel="next" title="计算机网络之HTTP">
+                <i class="fa fa-chevron-left"></i> 计算机网络之HTTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BWebSocket/" rel="prev" title="计算机网络之WebSocket">
+                计算机网络之WebSocket <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                A front-end developer
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%9D%A0"><span class="nav-number">1.1.</span> <span class="nav-text">不可靠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">无连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP%E8%B7%AF%E7%94%B1"><span class="nav-number">2.</span> <span class="nav-text">IP路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9"><span class="nav-number">2.1.</span> <span class="nav-text">路由选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">路由表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">子网掩码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPV4"><span class="nav-number">4.</span> <span class="nav-text">IPV4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">地址格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E5%88%86%E5%B8%83"><span class="nav-number">4.2.</span> <span class="nav-text">地址分布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPV6"><span class="nav-number">5.</span> <span class="nav-text">IPV6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">5.1.</span> <span class="nav-text">地址格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">地址分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.3.</span> <span class="nav-text">地址配置协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94IPV4"><span class="nav-number">5.4.</span> <span class="nav-text">对比IPV4</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
