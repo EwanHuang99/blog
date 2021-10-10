@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,basis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CanvasHTML5 添加的最受欢迎的功能就是&lt;canvas&gt;元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScript 动态地在这个区域中绘制图形。12&lt;canvas id&#x3D;&amp;#x27;canvas&amp;#x27; width&#x3D;&quot;600px&quot; height&#x3D;&quot;300px&quot;&gt;&lt;&#x2F;canvas&gt;&lt;!--">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础（四）">
+<meta property="og:url" content="https://huangyufeng.com/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="CanvasHTML5 添加的最受欢迎的功能就是&lt;canvas&gt;元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScript 动态地在这个区域中绘制图形。12&lt;canvas id&#x3D;&amp;#x27;canvas&amp;#x27; width&#x3D;&quot;600px&quot; height&#x3D;&quot;300px&quot;&gt;&lt;&#x2F;canvas&gt;&lt;!--">
+<meta property="og:locale">
+<meta property="og:image" content="https://huangyufeng.com/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/arc.jpg">
+<meta property="article:published_time" content="2017-12-01T13:28:28.000Z">
+<meta property="article:modified_time" content="2021-10-09T17:02:30.282Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="basis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyufeng.com/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/arc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/12/01/JavaScript基础（四）/"/>
+
+
+
+
+
+  <title>JavaScript基础（四） | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Welcome to Ewan's Website</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript基础（四）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-01T21:28:28+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/12/01/JavaScript基础（四）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/" class="leancloud_visitors" data-flag-title="JavaScript基础（四）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h2><p>HTML5 添加的最受欢迎的功能就是<code>&lt;canvas&gt;</code>元素。这个元素负责在页面中设定一个区域，然后就可以通过JavaScript 动态地在这个区域中绘制图形。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&#x27;canvas&#x27;</span> <span class="attr">width</span>=<span class="string">&quot;600px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- width默认300，height默认150 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>设定<code>canvas</code>大小时不建议用css的方式，那样仅设置了画布的大小而没有改变画布内的像素大小。</p>
+</blockquote>
+<h3 id="获取构图所用的上下文环境（2D）"><a href="#获取构图所用的上下文环境（2D）" class="headerlink" title="获取构图所用的上下文环境（2D）"></a>获取构图所用的上下文环境（2D）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (canvas.getContext) &#123;</span><br><span class="line">    <span class="keyword">var</span> context = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2D上下文"><a href="#2D上下文" class="headerlink" title="2D上下文"></a>2D上下文</h3><p>2D 上下文的坐标开始于<code>&lt;canvas&gt;</code>元素的左上角，原点坐标是<code>(0,0)</code>。所有坐标值都基于这个原点计算，<code>x</code>值越大表示越靠右，<code>y</code>值越大表示越靠下。</p>
+<ul>
+<li>描边与填充：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">context.strokeStyle = <span class="string">&quot;red&quot;</span>; <span class="comment">// 描边样式</span></span><br><span class="line">context.fillStyle = <span class="string">&quot;#0000ff&quot;</span>; <span class="comment">// 填充样式</span></span><br><span class="line">context.lineCap = <span class="string">&#x27;round&#x27;</span>; </span><br><span class="line"><span class="comment">// 线条收尾样式，默认butt（平直），round（圆角），square（方形）</span></span><br><span class="line">context.lineWidth = <span class="number">10</span>; <span class="comment">// 线条宽度</span></span><br></pre></td></tr></table></figure></li>
+<li>图案绘制：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">context.strokeRect(x, y, width, height) <span class="comment">// 矩形框，参数为左上角坐标、宽、高</span></span><br><span class="line">context.fillRect(x, y, width, height) <span class="comment">// 填充矩形</span></span><br></pre></td></tr></table></figure></li>
+<li>图案清除：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cotext.clearRect(x, y, width, height) <span class="comment">// 清除矩形像素</span></span><br></pre></td></tr></table></figure></li>
+<li>路径绘制：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">context.beginPath(); <span class="comment">// 开始绘制路径</span></span><br><span class="line"></span><br><span class="line">context.arc(x, y, radius, startAngle, endAngle, counterclockwise);</span><br><span class="line"><span class="comment">// 圆心坐标，半径，起始角度，终止角度，是否逆时针（默认为false，顺时针）</span></span><br><span class="line">context.arcTo(x1, y1, x2, y2, radius);</span><br><span class="line"><span class="comment">// 从(x1, y1)到(x2, y2)绘制一条半径为radius的弧度</span></span><br><span class="line">context.lineTo(x, y);</span><br><span class="line"><span class="comment">// 从上一点开始绘制一条直线到(x, y)</span></span><br><span class="line">context.moveTo(x, y);</span><br><span class="line"><span class="comment">// 将图标移动到(x, y)，不画线</span></span><br><span class="line">context.rect(x, y, width, height);</span><br><span class="line"><span class="comment">// 绘制矩形路径</span></span><br><span class="line"></span><br><span class="line">contex.closePath(); <span class="comment">// 结束路径（可选，没有则不形成封闭图形）</span></span><br><span class="line"></span><br><span class="line">context.stroke(); <span class="comment">// 描边</span></span><br><span class="line">context.fill(); <span class="comment">// 填充</span></span><br><span class="line">context.clip(); <span class="comment">// 创建裁剪区</span></span><br></pre></td></tr></table></figure>
+<img src="/2017/12/01/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/arc.jpg" alt="arc"></li>
+<li>转换：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">context.scale(width, height); <span class="comment">// 缩放，参数为宽高缩放比例</span></span><br><span class="line">context.rotate(angle); <span class="comment">// 旋转</span></span><br><span class="line">context.translate(x, y); <span class="comment">// 重新映射图形到(x, y)位置处</span></span><br><span class="line">context.transform(a, b, c, d, e, f);</span><br><span class="line"><span class="comment">// 基于原图形变换：a：水平缩放绘图，b: 水平倾斜绘图，c: 垂直倾斜绘图，</span></span><br><span class="line"><span class="comment">// d: 垂直缩放绘图，e: 水平移动绘图，f: 垂直移动绘图</span></span><br></pre></td></tr></table></figure></li>
+<li>文本：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">context.font = <span class="string">&#x27;40px Arial&#x27;</span>; <span class="comment">// 字体样式</span></span><br><span class="line">context.textAlign = <span class="string">&#x27;start&#x27;</span>; <span class="comment">// start,end,left,right,center对齐</span></span><br><span class="line"></span><br><span class="line">context.fillText(); <span class="comment">// 绘制填充文本</span></span><br><span class="line">context.strokeText(); <span class="comment">// 绘制无填充文本</span></span><br></pre></td></tr></table></figure></li>
+<li>图像：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(img, x, y); <span class="comment">// 定位绘制</span></span><br><span class="line">context.drawImage(img, x, y, width, height) <span class="comment">// 定位+大小</span></span><br><span class="line">context.drawImage(img, sx, sy, swidth, sheight, x, y, width, height);</span><br><span class="line"><span class="comment">// (sx, sy)裁剪起始点，(swidth, sheight)裁剪宽高</span></span><br></pre></td></tr></table></figure></li>
+<li>像素操作：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">context.createImageData(width, height)	</span><br><span class="line"><span class="comment">// 创建新的、空白的 ImageData 对象</span></span><br><span class="line">context.getImageData(x, y, width, height)	</span><br><span class="line"><span class="comment">// 返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据</span></span><br><span class="line">context.putImageData(imgData, x, y)	</span><br><span class="line"><span class="comment">// 把图像数据（从指定的 ImageData 对象）放回画布上</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p><strong>SVG</strong>是由<strong>W3C</strong>定义的一种由XML书写的用于网络的矢量图形。不同于Canvas，SVG绘制的图形中每一个元素都是一个可控的DOM节点。而浏览器在绘制Canvas却只是把它栅格化（像素化），一旦绘制完成就不再获得浏览器关注。Canvas依赖分辨率，而SVG不会。Canvas不支持事件处理，却有很好的重绘效率（适合游戏）。而SVG不依赖分辨率，支持事件，但重绘效率较低。</p>
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><p><strong>XML</strong>是由W3C定义的一种类似HTML的标记语言。但XML的设计宗旨是传输数据，而非显示数据。</p>
+<h3 id="JavaScript创建XML数据"><a href="#JavaScript创建XML数据" class="headerlink" title="JavaScript创建XML数据"></a>JavaScript创建XML数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createXMLDom</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject) &#123;</span><br><span class="line">        <span class="keyword">var</span> xmldoc=<span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLDOM&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.implementation &amp;&amp; <span class="built_in">document</span>.implementation.createDocument) &#123;</span><br><span class="line">        <span class="keyword">var</span> xmldoc=<span class="built_in">document</span>.implementation.createDocument(<span class="string">&quot;&quot;</span>, <span class="string">&quot;doc&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    xmldoc.async = <span class="literal">false</span>;</span><br><span class="line">  <span class="comment">//为了和FireFox一至，这里不能改为False;</span></span><br><span class="line">  xmldoc.preserveWhiteSpace=<span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> xmldoc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JavaScript解析XML数据"><a href="#JavaScript解析XML数据" class="headerlink" title="JavaScript解析XML数据"></a>JavaScript解析XML数据</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载XML文件。</span></span><br><span class="line"><span class="keyword">var</span> xmlDom = createXMLDom();</span><br><span class="line">xmlDom.load(<span class="string">&quot;info.xml&quot;</span>);</span><br><span class="line"><span class="comment">//获得根节点</span></span><br><span class="line"><span class="keyword">var</span> root = xmlDom.documentElement;</span><br><span class="line"><span class="keyword">var</span> data = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> names = root.getElementsByTagName(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ages = root.getElementsByTagName(<span class="string">&quot;age&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> len = names.length;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line"> data += <span class="string">&quot;姓名:&quot;</span>;</span><br><span class="line"> data += names[i].firstChild.nodeValue;</span><br><span class="line"> data += <span class="string">&quot; 年龄:&quot;</span>;</span><br><span class="line"> data += ages[i].firstChild.nodeValue;</span><br><span class="line"> data += <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">alert(data);</span><br></pre></td></tr></table></figure>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p><strong>JSON</strong>(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。它基于ECMAScript的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。它不支持变量、函数或对象实例，它就是一种表示结构化数据的格式，虽然JavaScript 中表示数据的某些语法相同，但它并不局限于JavaScript 的范畴。</p>
+<h3 id="JSON对象序列化"><a href="#JSON对象序列化" class="headerlink" title="JSON对象序列化"></a>JSON对象序列化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify(jsonobj);</span><br><span class="line"><span class="comment">// 将JSON对象转换成JSON字符串</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(jsonobj, [a, b]);</span><br><span class="line"><span class="comment">// 将JSON对象中key为a,b的部分转换成JSON字符串</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(jsonobj, (key, value) &#123;</span><br><span class="line">    <span class="keyword">switch</span>(key) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 将JSON对象中的data进行处理，每个key对应的值为函数返回值（值==undefined的被忽略），转换成JSON字符串</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(jsonobj, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// 将JSON对象转换成JSON字符串，每级缩进2个空白符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对于不符合JSON格式的对象，如果要转换成JSON字符串，需要添加<code>toJSON()</code>方法，定义其序列化格式。（类似<code>toString()</code>）</p>
+</blockquote>
+<h3 id="JSON字符串解析"><a href="#JSON字符串解析" class="headerlink" title="JSON字符串解析"></a>JSON字符串解析</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.parse(jsonString);</span><br><span class="line"><span class="comment">// 将JSON字符串转换成JSON对象</span></span><br><span class="line"><span class="built_in">JSON</span>.parse(jsonString, <span class="function">(<span class="params">key, value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span>(key) &#123;</span><br><span class="line">        <span class="comment">// ........同stringify()方法中函数参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p><code>Ajax</code>即“Asynchronous Javascript And XML”（异步<code>JavaScript</code>和<code>XML</code>）</p>
+<h3 id="XTMLHttpRequest对象"><a href="#XTMLHttpRequest对象" class="headerlink" title="XTMLHttpRequest对象"></a>XTMLHttpRequest对象</h3><p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建<code>XMLHttpRequest</code>对象用于在后台与服务器交换数据。如果不支持，则创建<code>ActiveXObject</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="发送请求"><a href="#发送请求" class="headerlink" title="发送请求"></a>发送请求</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(method, url, <span class="keyword">async</span>);</span><br><span class="line"><span class="comment">// 通过method(GET, POST)方法打开到url的链接，async表示是否异步执行</span></span><br><span class="line">xhr.setRequestHeader(header,value);</span><br><span class="line"><span class="comment">// 向请求添加 HTTP 头</span></span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">// 发送请求数据</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>send()方法接收一个参数，即要作为请求主体发送的数据。如果不需要通过请求主体发送数据，则必须传入null，因为这个参数对有些浏览器来说是必需的。</p>
+</blockquote>
+<h3 id="readyState与onreadystatechange事件"><a href="#readyState与onreadystatechange事件" class="headerlink" title="readyState与onreadystatechange事件"></a>readyState与onreadystatechange事件</h3><ul>
+<li>readyState<br><code>readyState</code>存储着<code>xhr</code>与服务器连接的状态：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态值</th>
+<th style="text-align:center">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">请求未初始化</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">服务器连接已建立</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">请求已接收</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">请求处理中</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">请求已完成，且响应已就绪</td>
+</tr>
+</tbody>
+</table>
+<p>当请求被发送到服务器时，我们需要执行一些基于响应的任务。每当<code>readyState</code>改变时，就会触发<code>onreadystatechange</code>事件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(xhr.readyState);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="请求响应"><a href="#请求响应" class="headerlink" title="请求响应"></a>请求响应</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">响应属性</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">responseText</td>
+<td style="text-align:center">作为响应主体被返回的文本</td>
+</tr>
+<tr>
+<td style="text-align:center">responseXML</td>
+<td style="text-align:center">如果响应的内容类型是”text/xml”或”application/xml”，这个属性中将保存包含着响应数据的XML DOM文档</td>
+</tr>
+<tr>
+<td style="text-align:center">status</td>
+<td style="text-align:center">响应的HTTP 状态</td>
+</tr>
+<tr>
+<td style="text-align:center">statusText</td>
+<td style="text-align:center">HTTP 状态的说明</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; <span class="built_in">parseInt</span>(xhr.status / <span class="number">200</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">    alert(xhr.responseText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>《JavaScript高级程序设计》<br><a target="_blank" rel="noopener" href="http://www.w3school.com.cn">www.w3school.com.cn</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/">www.runoob.com</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/basis/" rel="tag"># basis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/28/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/" rel="next" title="JavaScript基础（三）">
+                <i class="fa fa-chevron-left"></i> JavaScript基础（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                a web developer &amp; lover of life
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Canvas"><span class="nav-number">1.</span> <span class="nav-text">Canvas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9E%84%E5%9B%BE%E6%89%80%E7%94%A8%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83%EF%BC%882D%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">获取构图所用的上下文环境（2D）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.2.</span> <span class="nav-text">2D上下文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVG"><span class="nav-number">2.</span> <span class="nav-text">SVG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML"><span class="nav-number">3.</span> <span class="nav-text">XML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript%E5%88%9B%E5%BB%BAXML%E6%95%B0%E6%8D%AE"><span class="nav-number">3.1.</span> <span class="nav-text">JavaScript创建XML数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript%E8%A7%A3%E6%9E%90XML%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.</span> <span class="nav-text">JavaScript解析XML数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">4.</span> <span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">JSON对象序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">JSON字符串解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">5.</span> <span class="nav-text">AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XTMLHttpRequest%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.1.</span> <span class="nav-text">XTMLHttpRequest对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="nav-number">5.2.</span> <span class="nav-text">发送请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readyState%E4%B8%8Eonreadystatechange%E4%BA%8B%E4%BB%B6"><span class="nav-number">5.3.</span> <span class="nav-text">readyState与onreadystatechange事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94"><span class="nav-number">5.4.</span> <span class="nav-text">请求响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHPfwRM';
+      var conf = 'a8d9ef618af9ae7c52b893787ad54697';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz',
+                'X-LC-Key': 'MCJU6i0X8o0lFXKf2i8LR3V9',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

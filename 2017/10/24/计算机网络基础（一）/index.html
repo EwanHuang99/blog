@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="network,basis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;学习计算机网络课程时，我用的是James F.kurose和Keith W.Ross编著的《计算机网络——自顶向下方法》。不得不说，看这本书是需要花很多耐心“啃”下来的。书中涉及到的内容和历史太过广泛，而很多事例又不太贴合中国人的生活习惯，总显得不那么贴切。在此，我们换个方式，从快递网络认识计算机网络。 网络分层TCP&#x2F;IP网络分层：&amp;ensp;&amp;e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络基础（一）">
+<meta property="og:url" content="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;学习计算机网络课程时，我用的是James F.kurose和Keith W.Ross编著的《计算机网络——自顶向下方法》。不得不说，看这本书是需要花很多耐心“啃”下来的。书中涉及到的内容和历史太过广泛，而很多事例又不太贴合中国人的生活习惯，总显得不那么贴切。在此，我们换个方式，从快递网络认识计算机网络。 网络分层TCP&#x2F;IP网络分层：&amp;ensp;&amp;e">
+<meta property="og:locale">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/osi.jpg">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/progress.jpg">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/isps.jpg">
+<meta property="article:published_time" content="2017-10-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-09T17:02:30.465Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="basis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/osi.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/10/24/计算机网络基础（一）/"/>
+
+
+
+
+
+  <title>计算机网络基础（一） | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Welcome to Ewan's Website</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">计算机网络基础（一）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T00:00:00+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/24/计算机网络基础（一）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="leancloud_visitors" data-flag-title="计算机网络基础（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&ensp;&ensp;&ensp;&ensp;学习计算机网络课程时，我用的是James F.kurose和Keith W.Ross编著的<strong>《计算机网络——自顶向下方法》</strong>。不得不说，看这本书是需要花很多耐心“啃”下来的。书中涉及到的内容和历史太过广泛，而很多事例又不太贴合中国人的生活习惯，总显得不那么贴切。在此，我们换个方式，从快递网络认识计算机网络。</p>
+<h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><h3 id="TCP-IP网络分层："><a href="#TCP-IP网络分层：" class="headerlink" title="TCP/IP网络分层："></a>TCP/IP网络分层：</h3><p>&ensp;&ensp;&ensp;&ensp;在计算机网络中存在着各式各样的协议，每一种协议都规定了数据在传输的不同阶段需要满足的条件和标准，以保证数据能在不同的传输阶段被正确处理和分发，遇到问题时也能被及时解决。而数据所在的不同阶段被划分成了不同的层级。各类协议（所有协议合称为协议栈（protocol stack））依据所在的层级也被划分成<strong>5个层级</strong>：</p>
+<pre><code>- 物理层
+- 传输层
+- 网络层
+- 数据链路层
+- 应用层
+</code></pre><h3 id="OSI参考模型："><a href="#OSI参考模型：" class="headerlink" title="OSI参考模型："></a>OSI参考模型：</h3><p>&ensp;&ensp;&ensp;&ensp;国际标准化组织（ISO）提出计算机网络组织为<strong>7层</strong>，称为开放系统互联（OSI）模型。7层模型比实际的5级分层多了两个分层：会话层、表示层。<br><img src="/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/osi.jpg" alt="OSI模型"><br>&ensp;&ensp;&ensp;&ensp;<strong>会话层</strong>提供了数据交换定界和同步功能，包括了建立检查点和恢复方案的方法。<strong>表示层</strong>的作用是使应用程序能够解释交换数据的含义。这两个层级在因特网结构中包含在应用层中。</p>
+<h2 id="类比——寄件"><a href="#类比——寄件" class="headerlink" title="类比——寄件"></a>类比——寄件</h2><p>&ensp;&ensp;&ensp;&ensp;在<strong>《计算机网络——自顶向下方法》</strong>中用航班服务流程类比计算机网络中数据的传输，但我觉得用我们生活中常用的快递服务来类比，更容易理解：</p>
+<p>&ensp;&ensp;&ensp;&ensp;在寄快件时，我们会在家中把我们要寄出去的东西，以及快递公司提供的标签（快递单）准备好。在标签上注明寄件的地址、邮编等信息，然后把准备好的快件交给快递公司。快递公司收件之后，把快件打包好，运送到最近的集散中心，根据快件上的标签把快件分类，经过审核认证后，登记快递信息，然后把快递送上对应的运输通道。快递通过各种交通运送到目的地的集散中心，集散中心收件后登记收件信息，然后根据快件的详细地址把快件再次分类派发到对应地址的快递站。快递站收件后联系收件人，把货物交递到收件人手中。收件人拆开包装，开始使用。</p>
+<p><img src="/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/progress.jpg" alt="寄件流程"></p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>&ensp;&ensp;&ensp;&ensp;生活中寄件的流程和计算机网络极其相似。在<strong>应用层</strong>，我们准备好数据，选择好传递方式，填好对应的标签，如HTTP、SMTP、FTP等协议，上面记录着传输数据的类型、大小、目的地址以及使用的端口号（端口号类似快递地址的具体门牌号）等信息。此时包装的数据被称为<strong>报文</strong>（message）。然后把报文交递给运输层。</p>
+<h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>运输层</strong>中又包含TCP和UDP协议。这两个协议规定了数据的传递方式。选择TCP意为着我们传递的数据的方式是可靠的，保证了数据在运输途中的安全，就像是物流公司在运输时会更加小心翼翼避免挤压损坏货物一样，并且提供了运输途中丢包可查并补发的功能。而选择UDP协议则无法保证运输途中数据的安全，也无法得知货物是否丢失。此时的数据被称为<strong>报文段</strong>（segment）。</p>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>网络层</strong>类似于快递站和集散中心。它包含了计算机网络中最著名的协议——IP协议。网络层中的各个协议规定了如何识别数据的目的地址，并且如何高效的选择传递的路径并正确派发数据。此时的数据被称为<strong>数据报</strong>（datagram）。</p>
+<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>链路层</strong>决定了数据在网络中的传输介质和方式，例如以太网、WiFi和电缆接入网的DOCSIS协议。这类似于快递发送时是选择飞机、汽车、火车还是轮船作为运输工具。</p>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>物理层</strong>则确定了数据传输的介质，比如双绞铜线、光纤等。这类似于邮寄时的具体路线，是公路、天空、轨道还是水路。</p>
+<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><p>&ensp;&ensp;&ensp;&ensp;我们使用的互联网由均由<strong>因特网服务提供商</strong>（ISP）提供。为了真正实现网络互连，各个ISP构成了一个树状的连接结构：<br><img src="/2017/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/isps.jpg" alt="网络连接"><br>&ensp;&ensp;&ensp;&ensp;用户通过接入ISP连接到网络，接入ISP又连接到更高级别的ISP中，如区域ISP与顶级ISP或者内容提供商。第三方公司为了方便各个ISP直接的多对多连接，提供了<strong>因特网交换点</strong>（IXP）。于是，世界网络层层连接，形成巨大的互联网。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+            <a href="/tags/basis/" rel="tag"># basis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="next" title="操作系统基础">
+                <i class="fa fa-chevron-left"></i> 操作系统基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="计算机网络基础（二）">
+                计算机网络基础（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                a web developer &amp; lover of life
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82"><span class="nav-number">1.</span> <span class="nav-text">网络分层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">TCP&#x2F;IP网络分层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">OSI参考模型：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E6%AF%94%E2%80%94%E2%80%94%E5%AF%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">类比——寄件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-number">2.2.</span> <span class="nav-text">运输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">2.3.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">2.4.</span> <span class="nav-text">链路层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">2.5.</span> <span class="nav-text">物理层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">网络连接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHPfwRM';
+      var conf = 'a8d9ef618af9ae7c52b893787ad54697';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz',
+                'X-LC-Key': 'MCJU6i0X8o0lFXKf2i8LR3V9',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

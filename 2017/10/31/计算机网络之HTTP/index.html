@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="network,basis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主要特征简单快速&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。 灵活&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络之HTTP">
+<meta property="og:url" content="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="主要特征简单快速&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。 灵活&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type">
+<meta property="og:locale">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/request.png">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/http.jpg">
+<meta property="og:image" content="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/https.png">
+<meta property="article:published_time" content="2017-10-31T13:41:31.000Z">
+<meta property="article:modified_time" content="2021-10-09T17:02:30.439Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="network">
+<meta property="article:tag" content="basis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/request.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/10/31/计算机网络之HTTP/"/>
+
+
+
+
+
+  <title>计算机网络之HTTP | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Welcome to Ewan's Website</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">计算机网络之HTTP</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-31T21:41:31+08:00">
+                2017-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/31/计算机网络之HTTP/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/" class="leancloud_visitors" data-flag-title="计算机网络之HTTP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="主要特征"><a href="#主要特征" class="headerlink" title="主要特征"></a>主要特征</h2><h3 id="简单快速"><a href="#简单快速" class="headerlink" title="简单快速"></a>简单快速</h3><p>&ensp;&ensp;&ensp;&ensp;客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</p>
+<h3 id="灵活"><a href="#灵活" class="headerlink" title="灵活"></a>灵活</h3><p>&ensp;&ensp;&ensp;&ensp;HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</p>
+<h3 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h3><p>&ensp;&ensp;&ensp;&ensp;HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</p>
+<h3 id="支持短连接"><a href="#支持短连接" class="headerlink" title="支持短连接"></a>支持短连接</h3><p>&ensp;&ensp;&ensp;&ensp;HTTP1.0每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间和网络空间。HTTP1.1以后默认为长连接。</p>
+<h3 id="支持模式"><a href="#支持模式" class="headerlink" title="支持模式"></a>支持模式</h3><p>&ensp;&ensp;&ensp;&ensp;B/S与C/S模式都可以实现。<strong>且HTTP没有要求必须基于TCP/IP协议之上</strong>，它可以基于任何其他协议栈之上。</p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><h3 id="状态码分类"><a href="#状态码分类" class="headerlink" title="状态码分类"></a>状态码分类</h3><ul>
+<li>1xx：指示信息–表示请求已接收，继续处理；</li>
+<li>2xx：成功–表示请求已被成功接收、理解、接受；</li>
+<li>3xx：重定向–要完成请求必须进行更进一步的操作；</li>
+<li>4xx：客户端错误–请求有语法错误或请求无法实现；</li>
+<li>5xx：服务器端错误–服务器未能实现合法的请求。</li>
+</ul>
+<h3 id="常见状态码"><a href="#常见状态码" class="headerlink" title="常见状态码"></a>常见状态码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">100	Continue    //继续。客户端应继续其请求</span><br><span class="line">101	Switching Protocols //切换协议。服务器根据客户端的请求切换更高级协议</span><br><span class="line">200	OK  //请求成功。一般用于GET与POST请求</span><br><span class="line">204	No Content	//无内容。服务器成功处理，但未返回内容</span><br><span class="line">301	Moved Permanently	//永久移动。请求的资源已被永久的移动到新URI</span><br><span class="line">302	Found	临时移动。与301类似。但客户端应继续使用原有URI</span><br><span class="line">304	Not Modified	//未修改。所请求的资源未修改，使用缓存内容</span><br><span class="line">400	Bad Request //客户端请求的语法错误，服务器无法理解</span><br><span class="line">401	Unauthorized	//请求要求用户的身份认证</span><br><span class="line">403	Forbidden	//服务器理解请求客户端的请求，但是拒绝执行此请求</span><br><span class="line">404	Not Found	//服务器无法根据客户端的请求找到资源（网页）</span><br><span class="line">500	Internal Server Error	//服务器内部错误，无法完成请求</span><br><span class="line">503	Service Unavailable	//由于超载或系统维护，服务器暂时的无法处理客户端的请求</span><br><span class="line">504	Gateway Time-out	//充当网关或代理的服务器，未及时从远端服务器获取请求</span><br></pre></td></tr></table></figure>
+<h2 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h2><p>&ensp;&ensp;&ensp;&ensp;<strong>统一资源标识符</strong>（Uniform Resource Identifier | URI）是一个用于标识某一互联网资源名称的字符串。它包含了URL和URN两个子集。</p>
+<h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>统一资源定位符</strong>（Uniform Resource Locator | URL）是由<strong>蒂姆·伯纳斯·李</strong>发明用来作为万维网的地址。现在它已经被万维网联盟编制为互联网标准RFC1738。</p>
+<ul>
+<li>结构：  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protocol :// hostname[:port] / path / [;parameters][?query]#fragment //其中[]内为可选项</span><br></pre></td></tr></table></figure></li>
+<li>绝对定位：  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protocol :// hostname[:port] / path / [;parameters][?query]#fragment //完整的根结构</span><br><span class="line">/path / [;parameters][?query]#fragment //以&#x27;/&#x27;开头表示根结点</span><br></pre></td></tr></table></figure></li>
+<li>相对定位：  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./ path / [;parameters][?query]#fragment //&#x27;./&#x27;表示当所在位置，可省略</span><br><span class="line">../path / [;parameters][?query]#fragment //&#x27;../&#x27;表示上级目录</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="URN"><a href="#URN" class="headerlink" title="URN"></a>URN</h3><p>&ensp;&ensp;&ensp;&ensp;<strong>统一资源名称</strong> (Uniform Resource Name | URN)是URI两种形式之一。它能唯一标识一个实体的标识符，但是不能给出实体的位置。可以理解之为资源的唯一标识。</p>
+<h2 id="请求消息"><a href="#请求消息" class="headerlink" title="请求消息"></a>请求消息</h2><ul>
+<li>请求格式<br>  HTTP请求由<code>请求行（request line）</code>、<code>请求头部（header）</code>、<code>空行</code>和<code>请求数据</code>四个部分组成。<br>  <img src="/2017/10/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BHTTP/request.png" alt="request"></li>
+<li>请求行<br>  用来说明<code>请求类型</code>,要访问的<code>资源</code>以及所使用的<code>HTTP版本</code>。</li>
+<li>请求头部<br>  说明服务器要使用的附加信息。如主机地址<code>HOST</code>，客户端定义的代理信息<code>User-Agent</code>等辅助信息。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">属性值</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Accept</td>
+<td style="text-align:center">MIME类型（text/html）</td>
+<td style="text-align:left">请求接受响应数据类型</td>
+</tr>
+<tr>
+<td style="text-align:center">Accept-Encoding</td>
+<td style="text-align:center">编码格式</td>
+<td style="text-align:left">浏览器支持的编码格式</td>
+</tr>
+<tr>
+<td style="text-align:center">Cookie</td>
+<td style="text-align:center">交互信息（jsessionid=123）</td>
+<td style="text-align:left">本地存储交互所需信息</td>
+</tr>
+<tr>
+<td style="text-align:center">Host</td>
+<td style="text-align:center">host url</td>
+<td style="text-align:left">指定被请求资源的Internet主机和端口号</td>
+</tr>
+<tr>
+<td style="text-align:center">Referer</td>
+<td style="text-align:center">url</td>
+<td style="text-align:left">表示这个请求是从哪个URL过来的</td>
+</tr>
+<tr>
+<td style="text-align:center">Cache-Control</td>
+<td style="text-align:center">no-cache（依据服务响应处理）、no-store、public（所有内容都将被缓存）、private（内容只缓存到私有缓存中）…</td>
+<td style="text-align:left">指定请求和响应遵循的缓存机制</td>
+</tr>
+<tr>
+<td style="text-align:center">Date</td>
+<td style="text-align:center">时间</td>
+<td style="text-align:left">表示消息发送的时间</td>
+</tr>
+<tr>
+<td style="text-align:center">User-Agent</td>
+<td style="text-align:center">用户代理标识</td>
+<td style="text-align:left">标识客户端的运行环境</td>
+</tr>
+<tr>
+<td style="text-align:center">Orign</td>
+<td style="text-align:center">url</td>
+<td style="text-align:left">仅POST所有，类似Referer，用于检测数据来源，解决跨域问题。但不同于Referer，不涉及用户隐私</td>
+</tr>
+<tr>
+<td style="text-align:center">Connection</td>
+<td style="text-align:center">close/keepalive</td>
+<td style="text-align:left">是否开启长连接</td>
+</tr>
+<tr>
+<td style="text-align:center">Keep-Alive</td>
+<td style="text-align:center">300</td>
+<td style="text-align:left">开启长连接时的连接时长（秒）</td>
+</tr>
+<tr>
+<td style="text-align:center">If-Modified-Since</td>
+<td style="text-align:center">本地数据上一次修改时间</td>
+<td style="text-align:left">询问服务器数据是否变动</td>
+</tr>
+<tr>
+<td style="text-align:center">Access-Control-Request-Method</td>
+<td style="text-align:center">POST,GET,OPTIONS,DELETE</td>
+<td style="text-align:left">预检测实际使用请求方法</td>
+</tr>
+<tr>
+<td style="text-align:center">Access-Control-Request-Headers</td>
+<td style="text-align:center">X-PINGOTHER, Content-Type…</td>
+<td style="text-align:left">预检测实际使用请求头属性</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>样例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1.1  //请求行</span><br><span class="line">Host:huangyufeng.com  //请求头部begin</span><br><span class="line">User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</span><br><span class="line">Content-Type:application/x-www-form-urlencoded</span><br><span class="line">Content-Length:40</span><br><span class="line">Connection: Keep-Alive  //请求头部end</span><br><span class="line">//空行</span><br><span class="line">name=Professional%20Ajax&amp;publisher=Wiley    //数据</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="返回消息"><a href="#返回消息" class="headerlink" title="返回消息"></a>返回消息</h2><ul>
+<li>消息格式<br>  HTTP响应由：<code>状态行</code>、<code>消息报头</code>、<code>空行</code>和<code>响应正文</code>组成。</li>
+<li>状态行<br>  包含HTTP版本号及响应状态码。</li>
+<li>消息报头<br>  包含响应的信息和数据类型等内容。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">属性值</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Date</td>
+<td style="text-align:center">时间</td>
+<td style="text-align:left">消息发送时间</td>
+</tr>
+<tr>
+<td style="text-align:center">Server</td>
+<td style="text-align:center">服务器信息</td>
+<td style="text-align:left">提供服务器信息</td>
+</tr>
+<tr>
+<td style="text-align:center">Content-type</td>
+<td style="text-align:center">MIME类型（text/plain）</td>
+<td style="text-align:left">响应内容数据类型</td>
+</tr>
+<tr>
+<td style="text-align:center">Content-Encoding</td>
+<td style="text-align:center">编码格式</td>
+<td style="text-align:left">内容编码格式（未编码压缩过的数据不可携带）</td>
+</tr>
+<tr>
+<td style="text-align:center">Last-Modified</td>
+<td style="text-align:center">时间</td>
+<td style="text-align:left">服务端数据最后修改时间</td>
+</tr>
+<tr>
+<td style="text-align:center">Expires</td>
+<td style="text-align:center">时间</td>
+<td style="text-align:left">客户端缓存过期时间</td>
+</tr>
+<tr>
+<td style="text-align:center">Cache-Control</td>
+<td style="text-align:center">no-cache（依据服务响应处理）、no-store、public（所有内容都将被缓存）、private（内容只缓存到私有缓存中）…</td>
+<td style="text-align:left">指定请求和响应遵循的缓存机制</td>
+</tr>
+<tr>
+<td style="text-align:center">Set-Cookie</td>
+<td style="text-align:center">cookie信息</td>
+<td style="text-align:left">覆盖浏览器中的cookie信息</td>
+</tr>
+<tr>
+<td style="text-align:center">Access-Control-Allow-Origin</td>
+<td style="text-align:center">*、URL</td>
+<td style="text-align:left">允许跨域访问的请求源头</td>
+</tr>
+<tr>
+<td style="text-align:center">Access-Control-Allow-Methods</td>
+<td style="text-align:center">POST,GET,OPTIONS,DELETE</td>
+<td style="text-align:left">允许跨域访问的方法</td>
+</tr>
+<tr>
+<td style="text-align:center">Access-Control-Allow-Headers</td>
+<td style="text-align:center">header属性</td>
+<td style="text-align:left">允许附加的属性类型</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>样例  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK //状态行</span><br><span class="line">Date: Fri, 22 May 2009 06:07:21 GMT //消息报头begin</span><br><span class="line">Content-Type: text/html; charset=UTF-8  //消息报头end</span><br><span class="line">//空行</span><br><span class="line">&lt;html&gt;  //正文begin</span><br><span class="line">    &lt;head&gt;&lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    //................</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt; //正文end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Get与Post"><a href="#Get与Post" class="headerlink" title="Get与Post"></a>Get与Post</h2><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol>
+<li>GET在浏览器回退时是无害的，而POST会再次提交请求；</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以；</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置； </li>
+<li>GET请求的参数会完整的被保存在历史记录里，POST不会；</li>
+<li>GET请求参数放在URL中，POST放在request body中；</li>
+<li>GET请求只能进行url编码，POST请求支持多种编码方式； </li>
+<li>对于参数类型，GET只接受ASCII字符，而POST没有限制； </li>
+<li>GET请求在URL中传递的参数是有长度限制的，而POST没有； </li>
+<li>GET比POST更不安全，因为参数直接暴露在URL中，所以不能传递敏感信息；</li>
+</ol>
+<h3 id="Get请求可以通过body携带数据吗？"><a href="#Get请求可以通过body携带数据吗？" class="headerlink" title="Get请求可以通过body携带数据吗？"></a>Get请求可以通过body携带数据吗？</h3><p>事实上，所有HTTP请求的本质都是一个TCP数据包而已，只是在应用层中规定了如何使用TCP打包数据而已，TCP数据包本身是没有区别的。因此，Get请求同样可以在body中添加数据，不过许多服务器会忽略Get请求的body部分。此外，有的浏览器在发送POST请求时，会将POST的header部分与body部分分成两个TCP包发送，当第一个数据包发送成功收到ACK后再发送第二个数据包。</p>
+<h2 id="HTTP1-0，1-1，2-0"><a href="#HTTP1-0，1-1，2-0" class="headerlink" title="HTTP1.0，1.1，2.0"></a>HTTP1.0，1.1，2.0</h2><h3 id="HTTP1-0与HTTP1-1的区别"><a href="#HTTP1-0与HTTP1-1的区别" class="headerlink" title="HTTP1.0与HTTP1.1的区别"></a>HTTP1.0与HTTP1.1的区别</h3><ul>
+<li>长连接、短连接<br>  HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接，而HTTP1.1默认支持长连接。</li>
+<li>宽带消耗<br>  HTTP 1.1支持只发送header信息(不带任何body信息)，如果服务器认为客户端有权限请求服务器，则返回100，否则返回401。客户端如果接受到100，才开始把请求body发送到服务器。另外HTTP还支持传送内容的一部分。这样当客户端已经有一部分的资源后，只需要跟服务器请求另外的部分资源即可。这是支持文件<code>断点续传</code>的基础。</li>
+<li>HOST域<br>  HTTP1.0是没有host域的，HTTP1.1才支持这个参数。</li>
+<li>请求方法<br>  HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。<br>  HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET     //请求指定的页面信息，并返回实体主体。</span><br><span class="line">HEAD     //类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</span><br><span class="line">POST     //向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</span><br><span class="line">PUT     //从客户端向服务器传送的数据取代指定的文档的内容。</span><br><span class="line">DELETE      //请求服务器删除指定的页面。</span><br><span class="line">CONNECT     //HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</span><br><span class="line">OPTIONS     //允许客户端查看服务器的性能。</span><br><span class="line">TRACE     //回显服务器收到的请求，主要用于测试或诊断。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h3><ul>
+<li>多路复用<br>  <img src="./http.jpg" alt="http2.0"><br>  HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求。当然HTTP1.1也可以多建立几个TCP连接，来支持处理更多并发的请求，但是创建TCP连接本身也是有开销的。</li>
+<li>数据压缩<br>  HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。</li>
+<li>服务器推送<br>  当我们对支持HTTP2.0的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源。</li>
+</ul>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>&ensp;&ensp;&ensp;&ensp;为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。</p>
+<p><img src="https.png" alt="https.png"></p>
+<h3 id="HTTPS与HTTP的区别"><a href="#HTTPS与HTTP的区别" class="headerlink" title="HTTPS与HTTP的区别"></a>HTTPS与HTTP的区别</h3><ol>
+<li>HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。</li>
+<li>HTTP是超文本传输协议，信息是明文传输，HTTPS则是具有安全性的ssl加密传输协议。</li>
+<li>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。（值得一提的是，443端口被谷歌用来作为它们制定的新协议QUIC，而不是基于TCP。这一协议同样服务于HTTPS。）</li>
+<li>HTTP的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比HTTP协议安全。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ranyonsue/p/5984001.html">《关于HTTP协议，一篇就够了》</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/34074946">《HTTP/2.0 相比1.0有哪些重大改进？》</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gotodsp/p/6366163.html">《HTTP1.0 HTTP 1.1 HTTP 2.0主要区别》</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+            <a href="/tags/basis/" rel="tag"># basis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="计算机网络基础（二）">
+                <i class="fa fa-chevron-left"></i> 计算机网络基础（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BIP/" rel="prev" title="计算机网络之IP">
+                计算机网络之IP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                a web developer &amp; lover of life
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E5%BE%81"><span class="nav-number">1.</span> <span class="nav-text">主要特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F"><span class="nav-number">1.1.</span> <span class="nav-text">简单快速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%B5%E6%B4%BB"><span class="nav-number">1.2.</span> <span class="nav-text">灵活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%8A%B6%E6%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">无状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.4.</span> <span class="nav-text">支持短连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">支持模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">状态码分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">常见状态码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URI"><span class="nav-number">3.</span> <span class="nav-text">URI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL"><span class="nav-number">3.1.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URN"><span class="nav-number">3.2.</span> <span class="nav-text">URN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF"><span class="nav-number">4.</span> <span class="nav-text">请求消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E6%B6%88%E6%81%AF"><span class="nav-number">5.</span> <span class="nav-text">返回消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get%E4%B8%8EPost"><span class="nav-number">6.</span> <span class="nav-text">Get与Post</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB"><span class="nav-number">6.1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get%E8%AF%B7%E6%B1%82%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87body%E6%90%BA%E5%B8%A6%E6%95%B0%E6%8D%AE%E5%90%97%EF%BC%9F"><span class="nav-number">6.2.</span> <span class="nav-text">Get请求可以通过body携带数据吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-0%EF%BC%8C1-1%EF%BC%8C2-0"><span class="nav-number">7.</span> <span class="nav-text">HTTP1.0，1.1，2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0%E4%B8%8EHTTP1-1%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.1.</span> <span class="nav-text">HTTP1.0与HTTP1.1的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2-0"><span class="nav-number">7.2.</span> <span class="nav-text">HTTP2.0</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">8.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS%E4%B8%8EHTTP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">8.1.</span> <span class="nav-text">HTTPS与HTTP的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHPfwRM';
+      var conf = 'a8d9ef618af9ae7c52b893787ad54697';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz',
+                'X-LC-Key': 'MCJU6i0X8o0lFXKf2i8LR3V9',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

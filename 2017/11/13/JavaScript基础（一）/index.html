@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,basis," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基础特点 弱类型 解释型  JS不同于JAVA、C等编译型语言，它仅在运行时执行，不需要提前进行编译。因此，其对平台的依赖性较低，但执行效率却不及编译型语言。此外，对于一部分逻辑和空指针BUG，JS只能在执行时才能发现，而编译型语言在编译过程中就能及时发现，所以需要进行充分的单元测试。 单线程  不同于JAVA等后端语言，JS在浏览器执行时只有单线程执行，不具备多线程功能，因此也不必考虑多线程中存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础（一）">
+<meta property="og:url" content="https://huangyufeng.com/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="基础特点 弱类型 解释型  JS不同于JAVA、C等编译型语言，它仅在运行时执行，不需要提前进行编译。因此，其对平台的依赖性较低，但执行效率却不及编译型语言。此外，对于一部分逻辑和空指针BUG，JS只能在执行时才能发现，而编译型语言在编译过程中就能及时发现，所以需要进行充分的单元测试。 单线程  不同于JAVA等后端语言，JS在浏览器执行时只有单线程执行，不具备多线程功能，因此也不必考虑多线程中存">
+<meta property="og:locale">
+<meta property="og:image" content="https://huangyufeng.com/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/storage.png">
+<meta property="article:published_time" content="2017-11-13T14:43:50.000Z">
+<meta property="article:modified_time" content="2021-10-09T17:02:30.270Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="basis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyufeng.com/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/storage.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/11/13/JavaScript基础（一）/"/>
+
+
+
+
+
+  <title>JavaScript基础（一） | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Welcome to Ewan's Website</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript基础（一）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-13T22:43:50+08:00">
+                2017-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/13/JavaScript基础（一）/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="leancloud_visitors" data-flag-title="JavaScript基础（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>弱类型</li>
+<li>解释型<br>  JS不同于JAVA、C等编译型语言，它仅在运行时执行，不需要提前进行编译。因此，其对平台的依赖性较低，但执行效率却不及编译型语言。此外，对于一部分逻辑和空指针BUG，JS只能在执行时才能发现，而编译型语言在编译过程中就能及时发现，所以需要进行充分的单元测试。</li>
+<li>单线程<br>  不同于JAVA等后端语言，JS在浏览器执行时只有单线程执行，不具备多线程功能，因此也不必考虑多线程中存在的资源共享问题和线程安全问题。但JS可以通过异步申请浏览器调用其他常用线程，将JS执行线程中的异步任务交给其他线程，加入到执行队列中逐个执行。</li>
+<li>多范式<br>  JS具有<strong>命令式</strong>、<strong>函数式</strong>、<strong>面向对象</strong>三种变成范式。</li>
+</ul>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><ul>
+<li>Undefined</li>
+<li>Null</li>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+</ul>
+<p>可以用<code>typeof</code>操作符得到除Null之外的其他变量的具体类型，得到的值是小写类型名，而Null类型则和引用类型一样返回<code>object</code>(null表示空指针对象)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">&#x27;abc&#x27;</span>    <span class="comment">// &#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">1</span>    <span class="comment">// &#x27;number&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// &#x27;boolean&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>    <span class="comment">// &#x27;undefined&#x27;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// &#x27;object&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>基本类型</strong>在内存中分别占有固定大小的空间，他们的值保存在<strong>栈</strong>空间，通过按值来访问。<br><strong>引用类型</strong>值大小不固定，<strong>栈内存</strong>中存放地址指向<strong>堆内存</strong>中的对象。</p>
+</blockquote>
+<p><img src="/2017/11/13/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/storage.png" alt="storage"></p>
+<h3 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h3><p>Javascript提供了两种比较操作符：<code>==</code>和<code>===</code>。</p>
+<ul>
+<li><code>==</code>提供了一套隐式转换机制<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="string">&#x27;1&#x27;</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span> <span class="comment">// true</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">false</span> <span class="comment">// true </span></span><br><span class="line"><span class="number">1</span> == <span class="literal">true</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>注1：虽然在条件判断时，<code>(null)</code>和<code>(undefined)</code>都会被当作<code>false</code>，这是由于在判断语句中调用了boolean类型的显示转换方法<code>Boolean(x)</code>，而<code>null</code>和<code>undefinded</code>和<code>false</code>之间并没有隐式转换关系；<br>注2：<code>NaN</code>作为一个特殊值，与任何值不等，包括其自身：<code>NaN != NaN</code>。判断是否为<code>NaN</code>要通过方法<code>isNaN()</code>。</p>
+</blockquote>
+<ul>
+<li><code>===</code>表示严格等于，严格要求值与类型匹配<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> === <span class="string">&#x27;1&#x27;</span>   <span class="comment">// false</span></span><br><span class="line"><span class="literal">undefined</span> === <span class="literal">null</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">&#x27;abc&#x27;</span> === <span class="string">&#x27;abc&#x27;</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="数值运算"><a href="#数值运算" class="headerlink" title="数值运算"></a>数值运算</h3><ul>
+<li>ECMAScript会不失时机地将伪浮点数值转换成整型类型储存，从而节省一半的储存空间。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="number">1.</span> <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> f2 = <span class="number">10.0</span> <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>JS中浮点数值最高精度为17位小数，该类型采用了IEEE754格式，IEEE754浮点计算有一个通病，即浮点的计算精确度存在一些问题。例如:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0.1</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0.2</span>;</span><br><span class="line">alert(a + b);   <span class="comment">//0.30000000000000004</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>因此不要做这样的判断 if(a+b == 0.3){}</p>
+</blockquote>
+<ul>
+<li><p>0作为除数时，JS不会报错，而是得到<code>NaN</code>。</p>
+</li>
+<li><p>数值的范围为 Number.MIN_VALUE - Number.MAX_VALUE 超出范围则变成 (-Infinity[Number.NEGATIVE_INFINITY] || Infinity[Number.POSITIVE_INFINITY]) 不能进行计算。</p>
+</li>
+</ul>
+<h3 id="内存问题"><a href="#内存问题" class="headerlink" title="内存问题"></a>内存问题</h3><p>JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。具体到浏览器中的实现，则通常有两个策略:</p>
+<ul>
+<li><p>标记清除</p>
+<ol>
+<li>当变量将变量标记为“进入环境”；</li>
+<li>当变量离开环境后，将其标记为“离开环境”；</li>
+<li>垃圾收集器会间隔运行，清空已经“离开环境”的变量。</li>
+</ol>
+</li>
+<li><p>引用计数</p>
+<ol>
+<li>当引用一个值时，其引用次数++;</li>
+<li>当引用次数等于0时，清掉对应内存。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>标记清楚策略中，由于垃圾收集器是固定间隔回收内存的，所以在工作量较大的程序中效率并不是十分理想，但主流浏览器都采用这种方式。<br>引用计数面对<strong>循环引用</strong>时将显得力不从心，即当两个对象中均包含一个对方的引用时，这两个对象的引用次数永不为0。</p>
+</blockquote>
+<ul>
+<li>解除引用<br>  当确认一个变量不再引用之后，最好将其赋值为<code>null</code>，以确保内存回收机制能回收该引用，提高回收性能。</li>
+</ul>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>JS中除了前面提及的基本类型外，还有<strong>引用类型</strong>。引用类型是一种数据结构，<br>用于将数据和功能组织在一起。</p>
+<ul>
+<li><p>引用<br>  引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript 不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。</p>
+</li>
+<li><p>引用类型赋值<br>  与普通类型赋值不同，引用类型的赋值其实只是拷贝了对象的内存地址，因此，当一个引用变量赋值给另一个引用变量时，只是将两个变量同时指向同一个对象而已：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a.num = <span class="number">1</span>;</span><br><span class="line">alert(b.num)    <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类型比较<br>  不同于普通类型，<code>==</code>和<code>===</code>只能判断指向同一个对象的引用相等。如果要判断两个对象是否属于同一个类的实例，需要用<strong>instanceof</strong>：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>] == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]    <span class="comment">// false 两个数组内的值虽然相同，但却是两个存储在不同内存中的对象</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] isntanceof <span class="built_in">Array</span>  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])    <span class="comment">// true ES5中新增的判断Array实例的方法</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>instanceof的判断只能用于同一个全局环境之下，通俗地说，也就是跨页面使用instanceof方法并不能得到预期结果。</p>
+</blockquote>
+</li>
+<li><p>Object</p>
+<ul>
+<li><p>Object类型的作用类似于JS中大多数类型的顶级祖先，大多数类的实现都源于对Object的继承。<br>创建Object 实例的方式有两种：</p>
+<ol>
+<li><p>使用new 操作符后跟Object 构造函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">&#x27;Ewan&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用字面量表示法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span> : <span class="string">&#x27;Ewan&#x27;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>获取对象属性的两种方法：</p>
+<ol>
+<li><p>点操作符：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.name <span class="comment">// Ewan</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方括号语法(要访问的属性应以<strong>字符串</strong>的形式出现在方括号中)：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person[<span class="string">&#x27;name&#x27;</span>]  <span class="comment">// Ewan</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>转换字符串方法:</p>
+<ol>
+<li>toLocaleString()<br>以人们的使用习惯为标准转换，大多数时候与toString()输出结果没有区别，但在时间和数字（超过四位数时）会体现：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1234</span>;</span><br><span class="line">a.toString(); <span class="comment">// 1234</span></span><br><span class="line">a.toLoacleString(); <span class="comment">// 1,123</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">d.toString() <span class="comment">// &quot;Wed Oct 25 2017 23:05:48 GMT+0800 (中国标准时间)&quot;</span></span><br><span class="line">d.toLocaleString() <span class="comment">// &quot;2017/10/25 下午11:05:48&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>toString()<br>转换字符串，对于数组而言，转换结果中每个元素以逗号分隔。</li>
+<li>valueOf()<br>与toString()类似。<strong>但前者偏向显示，后者偏向运算</strong>。</li>
+</ol>
+<blockquote>
+<p>在进行对象转换时（例如:alert(a)）,将优先调用toString方法，如若没有重写toString将调用valueOf方法，如果两方法都不没有重写，但按Object的toString输出。<br>在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。<br>在有运算操作符的情况下，valueOf的优先级高于toString。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Array</p>
+<ul>
+<li><p>Array类型的创建方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;blue&quot;</span>, <span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> colors = <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colors = [<span class="string">&quot;red&quot;</span>, <span class="string">&quot;blue&quot;</span>, <span class="string">&quot;green&quot;</span>];</span><br><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>, <span class="number">2</span>,]; <span class="comment">//这样会创建2或3项的数组（IE8或之前创建3个元素）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>栈方法、队列方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push()  <span class="comment">//  在数组末尾添加元素</span></span><br><span class="line">pop()   <span class="comment">//  删除并获得数组末尾元素</span></span><br><span class="line">shift() <span class="comment">//  删除并获得数组头部元素</span></span><br><span class="line">unshift()   <span class="comment">//  在数组头部插入元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reverse()   <span class="comment">// 逆序</span></span><br><span class="line">sort()  <span class="comment">// 默认生序排序 回调函数可以进行修改，每次顺序传入两个元素，返回1则表示交换，0和-1则不处理</span></span><br><span class="line">slice(a, b) <span class="comment">// 基于当前数组生成新数组，位置区间[a, b)</span></span><br><span class="line">splice(a, b)    <span class="comment">// 从位置a开始删除b个元素</span></span><br><span class="line">splice(a, b, ...)   <span class="comment">// 从位置a开始的b个元素用...替换</span></span><br><span class="line">indexOf(a)  <span class="comment">// a元素的位置</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">every(callback);    <span class="comment">// 如果对于每一项callback运算均为true则返回true</span></span><br><span class="line">some(callback); <span class="comment">// 任何一项callback运算为true则返回true</span></span><br><span class="line">filter(callback);   <span class="comment">// 返回执行callback结果为true的项组成的数组</span></span><br><span class="line">forEach(callback);  <span class="comment">//  对数组的每一项进行callback运算，没有返回值</span></span><br><span class="line">map(callback);  <span class="comment">//  返回每一项执行callback之后的结果组成的</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>归并方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reduce(calback) <span class="comment">// 从第一项开始，第一个参数为之前callback的运算结果，第二个参数为当前项</span></span><br><span class="line">reduceRight(callback)   <span class="comment">// 反向归并</span></span><br></pre></td></tr></table></figure></li>
+<li>删除元素<ol>
+<li>使用splice方法；</li>
+<li><code>(length - a)</code>，删除a个元素。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>基本包装类型<br>基本类型可以直接调用它们对应包装类的方法，但这并不等于基本类型和包装类型是一样的。基本类型调用包装类型的方法其实是将基本类型先转换成包装类型，调用方法结束后立即销毁生成的包装类。</p>
+<blockquote>
+<p>调用<code>typeof</code>时，包装类返回<code>&#39;object&#39;</code>；<br>使用<code>instanceof</code>时，基本类型返回<code>false</code>。</p>
+</blockquote>
+<ul>
+<li>Boolean<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>(a); <span class="comment">// 把a转换成Boolean类型的对象</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Number</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.toFixed(a);  <span class="comment">// 保留a位小数</span></span><br><span class="line"><span class="built_in">Number</span>.toExponential(a);    <span class="comment">// 指数表示法，a表示保留小数位数</span></span><br><span class="line"><span class="built_in">Number</span>.toPrecision(a);    <span class="comment">// 保留a位数字，超出的部分用指数表示法</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ES6之前，parseInt()，parseFloat()这两个类型转换方法属于全局方法，绑定在window上。ES6之后，将这两个方法绑定在Number之上，更加合理。</p>
+</blockquote>
+</li>
+<li>String<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stringValue = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">alert(stringValue.slice(<span class="number">3</span>)); <span class="comment">//&quot;lo world&quot;</span></span><br><span class="line">alert(stringValue.substring(<span class="number">3</span>)); <span class="comment">//&quot;lo world&quot;</span></span><br><span class="line">alert(stringValue.substr(<span class="number">3</span>)); <span class="comment">//&quot;lo world&quot;</span></span><br><span class="line">alert(stringValue.slice(<span class="number">3</span>, <span class="number">7</span>)); <span class="comment">//&quot;lo w&quot;</span></span><br><span class="line">alert(stringValue.substring(<span class="number">3</span>,<span class="number">7</span>)); <span class="comment">//&quot;lo w&quot;</span></span><br><span class="line">alert(stringValue.substr(<span class="number">3</span>, <span class="number">7</span>)); <span class="comment">//&quot;lo worl&quot;</span></span><br><span class="line"></span><br><span class="line">alert(stringValue.slice(-<span class="number">3</span>)); <span class="comment">//&quot;rld&quot;</span></span><br><span class="line">alert(stringValue.substring(-<span class="number">3</span>)); <span class="comment">//&quot;hello world&quot;</span></span><br><span class="line">alert(stringValue.substr(-<span class="number">3</span>)); <span class="comment">//&quot;rld&quot;</span></span><br><span class="line">alert(stringValue.slice(<span class="number">3</span>, -<span class="number">4</span>)); <span class="comment">//&quot;lo w&quot;</span></span><br><span class="line">alert(stringValue.substring(<span class="number">3</span>, -<span class="number">4</span>)); <span class="comment">//&quot;hel&quot;</span></span><br><span class="line">alert(stringValue.substr(<span class="number">3</span>, -<span class="number">4</span>)); <span class="comment">//&quot;&quot;（空字符串）</span></span><br></pre></td></tr></table></figure></li>
+<li>Function<br>每个函数都是Function 类型的实例，而且都与其他引用类型一样具有属性和方法。<strong>利用表达式定义函数时，实质上是调用了Function的构造函数</strong>。<br>每个函数对象都包含两个属性：<code>prototype</code>和<code>length</code>。<code>length</code>表示函数参数的个数，<code>prototype</code>表示函数原型（不可枚举，下有详述）。<br>每个函数对象都包含两个方法：<code>apply()</code>和<code>call()</code>用于执行函数:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">a, b, c</span>) </span>&#123;&#125;;</span><br><span class="line">a.apply(<span class="built_in">window</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// this指向window，参数以数组形式传入</span></span><br><span class="line">a.call(<span class="built_in">window</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);    <span class="comment">// this指向window，参数以枚举形式传入</span></span><br></pre></td></tr></table></figure>
+函数还能使用<code>bind(this)</code>方法绑定<code>this</code>并返回新的函数：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = a.bind(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><ul>
+<li>执行环境与作用域<br>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。</li>
+</ul>
+<p>JS中没有块级作用域：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;&#125;</span><br><span class="line">alert(i)    <span class="comment">// 10</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>JS中只有两种作用域：全局作用域、函数作用域。</p>
+</blockquote>
+<ul>
+<li>作用域链<br>JS中的作用域呈树状结构层层加深，子级作用域可以访问父级作用域中的资源，但父级作用域却无法直接获取到子级中的资源。<blockquote>
+<p>window<br>|_var color<br>|_function changeColor()<br>&ensp;&ensp;|_var color<br>&ensp;&ensp;|_swapColor()<br>&ensp;&ensp;&ensp;&ensp;|_x</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><ol>
+<li>函数声明</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>函数表达式：变量指向匿名函数（拉姆达函数）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// function body</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h3><p>ECMAScript在执行整个代码前，会首先把所有函数声明提升到其所在作用域的顶部，以便在作用域内任何地方都可以正常调用函数。</p>
+<blockquote>
+<p>但仅限声明式定义的函数，表达式定义的函数因为没有函数声明，因此也不存在提升的情况。</p>
+</blockquote>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>在ECMAScript中，为了避免利用表达式重新定义函数的名称，所以在使用递归时，提供了调用自身的方法<code>arguments.callee()</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// body</span></span><br><span class="line">    a();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a = <span class="literal">null</span>;</span><br><span class="line">b(); <span class="comment">// ERRO b()函数体中的a()已经不存在了</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>严格模式下<code>arguments.callee()</code>方法出错。</p>
+</blockquote>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>EMACScript提供了一种重复使用变量，同时避免使用全局变量造成全局污染的方法——闭包。即返回函数作用域A中定义的某一函数B，依然可以通过B获得A中的变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> x = a();</span><br><span class="line">alert(x()); <span class="comment">// &#x27;hello&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这种方式的原理其实是在A返回B之后，虽然A的执行环境的作用域链被销毁了，但因为它是B作用域链中的一环，所有其活动对象依然被保存在内存中，被挂载在B的作用域链之上，所以B依然能取得A中的资源。<br>这种机制会消耗较多内存，因此，最好在调用完成之后，让变量指向<code>null</code>。</p>
+</blockquote>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this指向法则：</p>
+<ol>
+<li>指向调用者</li>
+<li>对于构造函数，如果function返回的是一个对象，则this指向指向返回的对象，否则指向构造函数生成的对象。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&#x27;Ewan&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> fn();</span><br><span class="line">alert(f.name);  <span class="comment">// &#x27;Ewan&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&#x27;Ewan&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f2 = <span class="keyword">new</span> fn2();</span><br><span class="line">alert(f2.name); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h3><p>利用立即执行函数，函数执行完之后随机销毁，因此就形成块级作用域的效果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 块级作用域</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<h3 id="定义私有变量"><a href="#定义私有变量" class="headerlink" title="定义私有变量"></a>定义私有变量</h3><p>利用闭包：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createAccessor</span>(<span class="params">obj, propName, value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> accessor = &#123;</span><br><span class="line">		<span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> value</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">set</span>: <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">			value = v</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">Object</span>.defineProperty(obj, propName, &#123;</span><br><span class="line">		<span class="attr">get</span>: accessor.get</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">return</span> accessor</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>JS中没有重载</p>
+</blockquote>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="判断对象内容（属性）相等"><a href="#判断对象内容（属性）相等" class="headerlink" title="判断对象内容（属性）相等"></a>判断对象内容（属性）相等</h3><p>除了遍历对象的每个属性、方法对两个对象进行比较外，还可以利用字符串的比较特点，将对象转换成字符串进行比较。例如<code>toString()</code>方法（仅适用于Array等重载了toString()方法的对象类型）和<code>JSON.stringify</code>方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;<span class="attr">name</span>: <span class="string">&quot;huangyufeng&quot;</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">name</span>: <span class="string">&quot;huangyufeng&quot;</span>&#125;;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(a) === <span class="built_in">JSON</span>.stringify(b);</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>《JavaScript高级程序设计》</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/basis/" rel="tag"># basis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B9%8BWebSocket/" rel="next" title="计算机网络之WebSocket">
+                <i class="fa fa-chevron-left"></i> 计算机网络之WebSocket
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/19/JavaScript%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="JavaScript基础（二）">
+                JavaScript基础（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                a web developer &amp; lover of life
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">基本类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">1.3.</span> <span class="nav-text">比较操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">数值运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">内存问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.7.</span> <span class="nav-text">作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87"><span class="nav-number">2.2.</span> <span class="nav-text">函数提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">2.3.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">2.4.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this"><span class="nav-number">2.5.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E4%BB%BF%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.6.</span> <span class="nav-text">模仿块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F"><span class="nav-number">2.7.</span> <span class="nav-text">定义私有变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AE%B9%EF%BC%88%E5%B1%9E%E6%80%A7%EF%BC%89%E7%9B%B8%E7%AD%89"><span class="nav-number">3.1.</span> <span class="nav-text">判断对象内容（属性）相等</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHPfwRM';
+      var conf = 'a8d9ef618af9ae7c52b893787ad54697';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz',
+                'X-LC-Key': 'MCJU6i0X8o0lFXKf2i8LR3V9',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

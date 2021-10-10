@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="mul">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.sohucs.com *.sohu.com *.itc.cn *.lncld.net api.leancloud.cn; child-src https:">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,react," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JSX基本语法JSX是一种将HTML与JavaScript融合的语法：123const name &#x3D; &amp;#x27;Ewan&amp;#x27;;const element &#x3D; &lt;h1&gt;Hello, &amp;#123;name&amp;#125;&lt;&#x2F;h1&gt;;&#x2F;&#x2F; &lt;h1&gt;Hello, Ewan&lt;&#x2F;h1&gt;在这里，&lt;h1&gt;Hello, &amp;#123;name&amp;#125">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React学习笔记">
+<meta property="og:url" content="https://huangyufeng.com/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Ewan&#39;s">
+<meta property="og:description" content="JSX基本语法JSX是一种将HTML与JavaScript融合的语法：123const name &#x3D; &amp;#x27;Ewan&amp;#x27;;const element &#x3D; &lt;h1&gt;Hello, &amp;#123;name&amp;#125;&lt;&#x2F;h1&gt;;&#x2F;&#x2F; &lt;h1&gt;Hello, Ewan&lt;&#x2F;h1&gt;在这里，&lt;h1&gt;Hello, &amp;#123;name&amp;#125">
+<meta property="og:locale">
+<meta property="og:image" content="https://huangyufeng.com/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/react-event.jpg">
+<meta property="article:published_time" content="2017-12-31T14:47:14.000Z">
+<meta property="article:modified_time" content="2021-10-09T17:02:30.293Z">
+<meta property="article:author" content="Ewan Huang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huangyufeng.com/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/react-event.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangyufeng.com/2017/12/31/React学习笔记/"/>
+
+
+
+
+
+  <title>React学习笔记 | Ewan's</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="mul">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"><div class="progress" id="progress"></div></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ewan's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Welcome to Ewan's Website</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/categories/note/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            Notes
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essays">
+          <a href="/categories/essay/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            Essays
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangyufeng.com/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ewan's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">React学习笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T22:47:14+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/12/31/React学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="React学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p><code>JSX</code>是一种将HTML与JavaScript融合的语法：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Ewan&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line"><span class="comment">// &lt;h1&gt;Hello, Ewan&lt;/h1&gt;</span></span><br></pre></td></tr></table></figure><br>在这里，<code>&lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;</code>既不是字符串也不是单纯的HTML DOM，而是对EcmaScript特性的设计。动态值用<code>&#123;&#125;</code>包裹。</p>
+<h3 id="ReactDom-JSX渲染"><a href="#ReactDom-JSX渲染" class="headerlink" title="ReactDom JSX渲染"></a>ReactDom JSX渲染</h3><p>Html文档：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>ReactDom渲染：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Ewan&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(element, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>));</span><br></pre></td></tr></table></figure><br>效果见：<a target="_blank" rel="noopener" href="https://reactjs.org/redirect-to-codepen/rendering-elements/render-an-element">codepen</a></p>
+<h3 id="DOM属性"><a href="#DOM属性" class="headerlink" title="DOM属性"></a>DOM属性</h3><ol>
+<li>className<br>在JSX中，对应于HTML中的<code>class</code>属性的属性名为<code>className</code>。动态属性值同样用<code>&#123;&#125;</code>包裹。支持逻辑语句。</li>
+<li>key<br>对于一些可重用的组件，特别是统计列表中组件变动时，React能智能地选择重用组件而不必销毁重建一个新得组件。通过给组件设定独一无二的key值就能辅助react实现这一点。<blockquote>
+<p>注：如果需要使用数组的<code>key</code>作为列表组件的<code>key</code>，应保证数组中元素索引应当是稳定的（不会出现数组反转等改变数组元素与索引对应关系的情况），否则将导致<code>React</code>难以辨别节点变化，导致意想不到的结果。</p>
+</blockquote>
+</li>
+<li>ref<br><code>ref</code>属性允许获取某元素的<strong>真实DOM元素</strong>：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;dom</span> =&gt;</span> &#123;this.dom = dom&#125;&#125; /&gt;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：推荐使用React 16.0后推出的<code>let node = React.createRef()</code>生成对象绑定到<code>ref</code>属性，通过<code>node.current</code>获取到当前元素对应的真实节点。或者通过上述回调函数形式的方式获取真实DOM节点。避免使用过去的<code>this.refs.node</code>方式获取节点（可能会被移除）。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><ol>
+<li><p>区别于HTML中全小写的事件绑定属性，JSX中的事件绑定用驼峰状命名法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;handel&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>React</code>中另一个不同是你不能使用返回<code>false</code>的方式阻止默认行为。你必须明确的使用<code>preventDefault</code>:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;The link was clicked.&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与HTML中直接绑定的事件不同，所有<code>React</code>的大多数事件本质上都会绑定在<code>document</code>上，通过事件冒泡来代理组件触发的事件。在<code>document</code>上，事件的回调函数只有一个: <code>ReactEventListener.dispatchEvent</code>，然后进行相关的分发。</p>
+<blockquote>
+<p>注：<code>React</code>中的事件不是真实的<code>DOM事件</code>，而是一种合成事件。因此，一次事件的触发将经历<code>真实DOM</code>到<code>Virtual DOM</code>的来回转化。因此，为了避免不必要的麻烦和处理，最好避免将真实的事件和<code>ReactEvent</code>混用。</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/2017/12/31/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/react-event.jpg" alt="react-event"></p>
+<h2 id="state与props"><a href="#state与props" class="headerlink" title="state与props"></a>state与props</h2><h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p><code>state</code>是一个<code>react</code>组件内部的数据结构，存储着组件内部的各种状态和数值。它只属于组件本身，应保证它具有良好的封装性。</p>
+<blockquote>
+<p>注：在组件中可以通过<code>this.setState(newState)</code>来更改属性，但<code>this.setState()</code>是异步执行的，所以避免在<code>this.setState()</code>中通过修改<code>this.state</code>来改变<code>state</code>，你无法确保<code>this.setState</code>异步执行过程中<code>this.state</code>的值是否改变。同样，如果某些操作依赖新的<code>state</code>，你可以通过以下两种方式实现。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使依赖性操作同样异步执行</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将依赖性操作封装成this.setState()的第二个参数</span></span><br><span class="line"><span class="built_in">this</span>.setState(newState, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p><code>props</code>是<code>react</code>组件对外暴露的接口，组件可以通过它获取到外部传入的数据或者方法。但基于<code>react</code>单向数据流的特性，也为了保持数据的稳定，组件本身是不允许修改自身的<code>props</code>的，如果要修改，可以通过<code>props</code>调用外部传入的方法来修改。</p>
+<blockquote>
+<p>注：特殊的<code>props.children</code>是组件被使用时，开闭标签中间的内容。</p>
+</blockquote>
+<h2 id="组件生命周期（旧）"><a href="#组件生命周期（旧）" class="headerlink" title="组件生命周期（旧）"></a>组件生命周期（旧）</h2><h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h3><ol>
+<li>getDefualtProps<br>每个组件类只会调用该方法一次。该方法返回的对象用于为实例设定默认的<code>props</code>值。</li>
+<li>getInitialState<br>在组件创建实例过程中调用一次。用于初始化组件实例的<code>state</code>。在方法中可以访问<code>this.props</code>。</li>
+<li>componentWillMount<br>组件首次渲染之前调用（<code>render</code>之前）。这也是最后修改<code>state</code>的机会。</li>
+<li>render<br>所有组件唯一必须的方法，用于创建<strong>虚拟DOM</strong>。只能通过<code>this.state</code>和<code>this.props</code>访问数据。可以返回<code>null</code>，<code>false</code>和React组件。不可修改组件状态和数据。</li>
+<li>componentDidMount<br>真实的DOM被渲染完成之后，可以通过<code>this.getDOMNode()</code>访问到真实节点。</li>
+</ol>
+<blockquote>
+<p>注：对于函数式编写的组件（无状态组件）来说，无法获取到声明周期的钩子函数。由于服务器渲染时<code>componentWillMount</code>会在服务器端就执行，加上<code>this.setState</code>本身异步执行的特性（无法确保render执行前修改state），所以向服务器请求初始数据时（AJAX），应将请求方法放在<code>componentDidMount</code>之中。</p>
+</blockquote>
+<h3 id="存在期"><a href="#存在期" class="headerlink" title="存在期"></a>存在期</h3><ol>
+<li>componentWillReceiveProps<br>当父组件修改子组件的<code>props</code>时，子组件的<code>componentWillReceiveProps</code>方法被调用。可用于修改<code>props</code>和<code>state</code>。</li>
+<li>shouldComponentUpdate<br>在组件更新之前调用，用于确定是否更新组件（渲染）。返回<code>false</code>表示不更新。<blockquote>
+<p>如果在首次渲染期间调用了<code>forceUpdate</code>方法后将不会调用<code>shouldComponentUpdate</code>方法。</p>
+</blockquote>
+</li>
+<li>componentWillUpdate<br>组件更新之前调用，不可通过其修改<code>state</code>和<code>props</code>。</li>
+<li>componentDidUpdate<br>更新完成后调用。</li>
+</ol>
+<h3 id="销毁-amp-清理期"><a href="#销毁-amp-清理期" class="headerlink" title="销毁 &amp; 清理期"></a>销毁 &amp; 清理期</h3><ol>
+<li>componentWillUnmount<br>在组件从其所在层级结构中移除时调用。用于清理组件绑定的事件等任务及内存。</li>
+</ol>
+<h2 id="组件生命周期（新）"><a href="#组件生命周期（新）" class="headerlink" title="组件生命周期（新）"></a>组件生命周期（新）</h2><h3 id="实例化-1"><a href="#实例化-1" class="headerlink" title="实例化"></a>实例化</h3><ol>
+<li>constructor()<br>构造器，初始化组件中的<code>state</code>、<code>props</code>数据，绑定方法执行环境，生成实例对象。</li>
+<li><strong>static getDerivedStateFromProps(nextProps, prevState)</strong><br>组件实例化后和接受新属性时将会调用getDerivedStateFromProps。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。<blockquote>
+<p>注：只有在组件初始化、<code>props</code>改变、父组件重新渲染时会执行此方法。<code>this.setState()</code>通常不会触发。</p>
+</blockquote>
+</li>
+<li>componentWillMount() / UNSAFE_componentWillMount()<br>和原来的生命周期方法，不过官方添加了<code>UNSAFE_</code>标记提示开发者，该周期用于服务器端，应避免在异步请求或者修改渲染数据时使用。</li>
+<li>render()<br>同上</li>
+<li>componentDidMount()<br>同上</li>
+</ol>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><ol>
+<li>componentWillReceiveProps() / UNSAFE_componentWillReceiveProps()<br><code>UNSAFE_componentWillReceiveProps()</code>在装配了的组件接收到新属性前调用。若你需要更新状态响应属性改变（例如，重置它），你可能需对比<code>this.props</code>和<code>nextProps</code>并在该方法中使用<code>this.setState()</code>处理状态改变。<strong>建议使用static getDerivedStateFromProps(nextProps, prevState)替代，17版后可能淘汰</strong></li>
+<li>static getDerivedStateFromProps(nextProps, prevState)<br>同上</li>
+<li>shouldComponentUpdate()<br>同上</li>
+<li>componentWillUpdate() / UNSAFE_componentWillUpdate()<br>在<code>shouldComponentUpdata()</code>不返回<code>false</code>时调用。但17版后可能失效。</li>
+<li>render()<br>同上</li>
+<li><strong>getSnapshotBeforeUpdate()</strong><br><code>getSnapshotBeforeUpdate()</code>在最新的渲染输出提交给DOM前将会立即调用。它让你的组件能在当前的值可能要改变前获得它们。这一生命周期返回的任何值将会 作为参数被传递给<code>componentDidUpdate()</code>。</li>
+<li>componentDidUpdate()<br>新增第三个参数（从getSnapshotBeforeUpdate()中获得的）。</li>
+</ol>
+<h3 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h3><ol>
+<li>componentWillUnmount()<br>同上</li>
+</ol>
+<h3 id="错误捕捉"><a href="#错误捕捉" class="headerlink" title="错误捕捉"></a>错误捕捉</h3><ol>
+<li>componentDidCatch(error, info)<br>（详见错误边界）</li>
+</ol>
+<h2 id="React渲染"><a href="#React渲染" class="headerlink" title="React渲染"></a>React渲染</h2><h3 id="单向数据流"><a href="#单向数据流" class="headerlink" title="单向数据流"></a>单向数据流</h3><p>数据只能从父级组件向子级组件单向流动。</p>
+<h3 id="Virtual-Dom"><a href="#Virtual-Dom" class="headerlink" title="Virtual Dom"></a>Virtual Dom</h3><p>一个Web界面的结构由树状的各个DOM节点构成。通常情况下，我们可以通过JS来直接操控DOM节点，对其进行修改。但对于交互较多的页面，不断修改DOM节点会造成大量的重绘、重排，给浏览器造成巨大的负担。因此，React将DOM节点树抽象成Virtual DOM组成的树，当数据更新时，生成一棵新的树，将之与之前的虚拟DOM树进行对比即可知道是否需要对真实节点进行修改。这样的行为大大减轻了浏览器的负担。</p>
+<h3 id="非受控组件"><a href="#非受控组件" class="headerlink" title="非受控组件"></a>非受控组件</h3><p><code>react</code>将原始的大多数HTML元素都封装成对应的<strong>受控组件</strong>（可以用<code>JSX</code>的方式绑定事件，事件也是<code>react</code>自定义的合成事件），但仍然有一些组件是没有被包装的。比如<code>&lt;input type=&quot;file&quot;/&gt;</code>。对于这些组件，绑定<code>react</code>定义的事件是无法得到预期效果的。因此，需要通过下列的方式获取到他们对应的真实<code>DOM节点</code>，通过原生的方法来操作。</p>
+<h3 id="获取真实组件"><a href="#获取真实组件" class="headerlink" title="获取真实组件"></a>获取真实组件</h3><ul>
+<li><p><code>this.refs[refName]</code>：<br>该方法只适用于HTML标签上，将来可能会被移除：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">&quot;div&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 设定HTML引用 --&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.refs.div; <span class="comment">// 获取真实DOM</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>React.createRef</code>方法:<br>该方法出现在react 16.0版本之后，通过React API绑定节点:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> node = React.createRef();</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ref</span>=<span class="string">&#123;node&#125;/</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取真实节点</span></span><br><span class="line">node.current</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回调函数获取：<br>该方法是将真实的DOM作为回调函数的参数传入，然后进行处理：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> realNode;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ref</span>=<span class="string">&#123;(node)</span> =&gt;</span> &#123;realNode = node&#125;&#125;/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>注：<code>ref</code>式地绑定DOM节点只能作用于原生的HTML之上（input，div等），如果作用在自定义组件上，只能获取到组件的<strong>实例</strong>，而非真实的DOM节点。如果要强行获取（不建议）自定义组件的DOM节点，可以通过如下的方式。</p>
+</blockquote>
+<ul>
+<li><code>ReactDOM.findDOMNode()</code>方法：<br>将自定义组件实例作为参数即可获取到自定义组件<code>render</code>中的DOM节点，但通常不建议如此（破坏组件的封装性）：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> realNode;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> <span class="attr">ref</span>=<span class="string">&#123;instance</span> =&gt;</span> &#123;realNode = ReactDOM.findDOMNode(instance)&#125;&#125;/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h3><p>传统的diff算法通过循环递归来对节点进行依次比较还计算一棵树到另一棵树的最少操作，算法复杂度为O(n^3)，其中n是树中节点的个数。尽管这个复杂度并不好看，但是确实一个好的算法，只是在实际前端渲染的场景中，随着DOM节点的增多，性能开销也会非常大。而React在此基础之上，针对前端渲染的具体情况进行了具体分析，做出了相应的优化，从而实现了一个稳定高效的diff算法。</p>
+<p>优化1：删除节点时同时删除子节点，并不在对子节点进行对比。<br>优化2：对于同级列表节点，React给每个节点赋予一个唯一的key属性，以帮助React定位到正确的节点进行比较，从而大幅减少DOM操作次数。</p>
+<h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>常规情况下组件与组件之间的数据交互在<code>react</code>中都是通过父组件向子组件传递<code>props</code>来实现的。然而，对于一些嵌套较深，且中间组件除了传递<code>props</code>数据外没有其他功能的情况，<code>react</code>提供了一个类似于全局数据的API——<code>Context</code>。</p>
+<p>API:</p>
+<ol>
+<li>创建一个存储全局数据的<code>Context</code>，初始值是<code>defaultValue</code>：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Context = React.createContext(defaultValue);</span><br></pre></td></tr></table></figure></li>
+<li>在高层组件中引入<code>Context</code>并向其子级组件传递:<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context.provider value=&#123;<span class="comment">/* 默认值为defaultValue */</span>&#125;&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">MyComponents</span>/&gt;</span></span></span><br><span class="line">&lt;/Context.provider&gt;</span><br></pre></td></tr></table></figure></li>
+<li>底层组件获取从高层传入的数据：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">&quot;my-components&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Context.Consumer</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;value =&gt; <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;value&#125;/</span>&gt;</span>&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Context.Consumer</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h3><p>在使用JSX编写一个组件时，必须保证最终返回的所有元素都要包含在一个大的元素标签中：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        // 其他内容</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>如果想要避开这样的限制，返回多内容列表的话，可以使用<code>Fragment</code>：</p>
+<ol>
+<li><p>语法糖写法：(这样不支持属性与key)</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="xml">            // 其他内容</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>附带属性值（如key）的常规写法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">React.Fragment</span> <span class="attr">className</span>=<span class="string">&quot;my-components&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">            // 其他内容</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">React.Fragment</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Error-Boundaries"><a href="#Error-Boundaries" class="headerlink" title="Error Boundaries"></a>Error Boundaries</h3><p>React 16 引入了一种称为 “错误边界” 的新概念。这种方式类似于JS中的<code>try-catch</code>语句，<strong>用于捕获其子组件树 JavaScript 异常，记录错误并展示一个回退的 UI</strong>。</p>
+<p>如果一个类组件定义了一个名为 componentDidCatch(error, info): 的新方法，则其成为一个错误边界：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ErrorBoundary</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(props);</span><br><span class="line">    <span class="built_in">this</span>.state = &#123; <span class="attr">hasError</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">componentDidCatch</span>(<span class="params">error, info</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// Display fallback UI</span></span><br><span class="line">    <span class="built_in">this</span>.setState(&#123; <span class="attr">hasError</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">    <span class="comment">// You can also log the error to an error reporting service</span></span><br><span class="line">    logErrorToMyService(error, info);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.state.hasError) &#123;</span><br><span class="line">      <span class="comment">// You can render any custom fallback UI</span></span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Something went wrong.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用该错误边界组件：<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ErrorBoundary&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">MyComponents</span> /&gt;</span></span></span><br><span class="line">&lt;/ErrorBoundary&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：以下错误无法被错误边界组件捕获：事件处理 （了解更多）、异步代码 （例如 setTimeout 或 requestAnimationFrame 回调函数）、服务端渲染、错误边界自身抛出来的错误 （而不是其子组件）。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://reactjs.org/docs/getting-started.html">《React官方文档》</a><br>《React 引领未来的用户界面开发框架》<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011413181">《源码看React事件机制》</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Vue学习笔记">
+                <i class="fa fa-chevron-left"></i> Vue学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/07/React-Redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="React-Redux学习笔记">
+                React-Redux学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description">
+                a web developer &amp; lover of life
+              </p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ewanhuang99" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Ewanhuang99@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/%E7%8E%89%E5%B3%B0-%E9%BB%84-9a99b211a/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX"><span class="nav-number">1.</span> <span class="nav-text">JSX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReactDom-JSX%E6%B8%B2%E6%9F%93"><span class="nav-number">1.2.</span> <span class="nav-text">ReactDom JSX渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">DOM属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">1.4.</span> <span class="nav-text">事件绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state%E4%B8%8Eprops"><span class="nav-number">2.</span> <span class="nav-text">state与props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state"><span class="nav-number">2.1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">2.2.</span> <span class="nav-text">props</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E6%97%A7%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">组件生命周期（旧）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E6%9C%9F"><span class="nav-number">3.2.</span> <span class="nav-text">存在期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81-amp-%E6%B8%85%E7%90%86%E6%9C%9F"><span class="nav-number">3.3.</span> <span class="nav-text">销毁 &amp; 清理期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E6%96%B0%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">组件生命周期（新）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96-1"><span class="nav-number">4.1.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-number">4.2.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81"><span class="nav-number">4.3.</span> <span class="nav-text">销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%8D%95%E6%8D%89"><span class="nav-number">4.4.</span> <span class="nav-text">错误捕捉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E6%B8%B2%E6%9F%93"><span class="nav-number">5.</span> <span class="nav-text">React渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="nav-number">5.1.</span> <span class="nav-text">单向数据流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtual-Dom"><span class="nav-number">5.2.</span> <span class="nav-text">Virtual Dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6"><span class="nav-number">5.3.</span> <span class="nav-text">非受控组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%9C%9F%E5%AE%9E%E7%BB%84%E4%BB%B6"><span class="nav-number">5.4.</span> <span class="nav-text">获取真实组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diff%E7%AE%97%E6%B3%95"><span class="nav-number">5.5.</span> <span class="nav-text">diff算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7"><span class="nav-number">6.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Context"><span class="nav-number">6.1.</span> <span class="nav-text">Context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fragment"><span class="nav-number">6.2.</span> <span class="nav-text">Fragment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-Boundaries"><span class="nav-number">6.3.</span> <span class="nav-text">Error Boundaries</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ewan Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Based on &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<span class="post-meta-divider">|</span>
+
+黔ICP备18006011号-1
+
+<div style="width:300px;margin:0 auto; padding:10px 0;">
+  <img style="display:inline-block" src="/images/备案图标.png"/>
+  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52011502000379" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">贵公网安备 52011502000379号</p></a>
+</div>
+		 
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/progress.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/banner.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytHPfwRM';
+      var conf = 'a8d9ef618af9ae7c52b893787ad54697';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'dU8Rx3S1KtVXGFG8rh8BVVes-gzGzoHsz',
+                'X-LC-Key': 'MCJU6i0X8o0lFXKf2i8LR3V9',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
