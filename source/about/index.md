@@ -44,5 +44,7 @@ Welcome to my [blog](https://huangyufeng.com) which is powered by [Hexo](https:/
     借调负责携程国际品牌Trip.com机票App预定流程Native转React Native技术工作，完成了列表页、中间页的整体重构、监控植入、性能优化，以及部分紧急需求开发工作。
 * **2018~2020&ensp;&ensp;&ensp;携程集团&ensp;&ensp;&ensp;&ensp;&ensp;前端开发工程师**
     负责携程国际品牌Trip.com机票Online预定流程，完成了React技术重构及各类业务开发工作。
+* **2018~2020&ensp;&ensp;&ensp;东软集团&ensp;&ensp;&ensp;&ensp;&ensp;软件开发实习生**
+    负责东软集团旗下东软睿道内部教育培训应用的前端开发工作，主要基于React、Java Spring MVC、Oracle数据库。
 * **2015~2018&ensp;&ensp;&ensp;东大在线网络传媒工作室&ensp;&ensp;&ensp;设计部部长**
     负责校内网站设计与开发，包括东北大学官网，东北大学新闻网，东北大学成人教育网等。
