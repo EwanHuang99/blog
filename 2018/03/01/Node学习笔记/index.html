@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="basis,js,node," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,19 +80,17 @@
 
 
 
-<meta name="description" content="模块机制CommonJS模块定义AMDCMDNPMNPM是随着NodeJS一同安装的包管理工具，为用户提供了方便、快捷的管理和开发各种基于Node环境的依赖包。它的主要功能有：  允许用户从NPM服务器下载别人编写的第三方包到本地使用； 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用； 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。  常用命令: NPM版本信息1">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;NodeJS作为JavaScript在后端运行的宿主平台，保留了浏览器中许多常见的JavaScript接口，在不额外给JavaScript语言附加其他特性的基础之上，将前端 异步、事件驱动、单线程的思想迁移到了服务端。基于其自身的这些特点，也使得NodeJS成为更适于处理 I&#x2F;O密集 与 高并发 服务的后端技术选型。 模块机制CommonJSNode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node学习笔记">
 <meta property="og:url" content="https://huangyufeng.com/2018/03/01/Node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Ewan&#39;s">
-<meta property="og:description" content="模块机制CommonJS模块定义AMDCMDNPMNPM是随着NodeJS一同安装的包管理工具，为用户提供了方便、快捷的管理和开发各种基于Node环境的依赖包。它的主要功能有：  允许用户从NPM服务器下载别人编写的第三方包到本地使用； 允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用； 允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。  常用命令: NPM版本信息1">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;NodeJS作为JavaScript在后端运行的宿主平台，保留了浏览器中许多常见的JavaScript接口，在不额外给JavaScript语言附加其他特性的基础之上，将前端 异步、事件驱动、单线程的思想迁移到了服务端。基于其自身的这些特点，也使得NodeJS成为更适于处理 I&#x2F;O密集 与 高并发 服务的后端技术选型。 模块机制CommonJSNode">
 <meta property="og:locale">
 <meta property="article:published_time" content="2018-03-01T07:02:47.000Z">
-<meta property="article:modified_time" content="2021-10-09T17:02:30.285Z">
+<meta property="article:modified_time" content="2022-03-12T07:16:05.034Z">
 <meta property="article:author" content="Ewan Huang">
-<meta property="article:tag" content="basis">
-<meta property="article:tag" content="js">
-<meta property="article:tag" content="node">
+<meta property="article:tag" content="Ewan, huang, 黄玉峰, 博客, 日志, 随笔">
 <meta name="twitter:card" content="summary">
 
 
@@ -306,28 +304,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/note/" itemprop="url" rel="index">
-                    <span itemprop="name">note</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -355,14 +331,56 @@
       
 
       
-        <h2 id="模块机制"><a href="#模块机制" class="headerlink" title="模块机制"></a>模块机制</h2><h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><h3 id="模块定义"><a href="#模块定义" class="headerlink" title="模块定义"></a>模块定义</h3><h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><h3 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h3><p><code>NPM</code>是随着<code>NodeJS</code>一同安装的包管理工具，为用户提供了方便、快捷的管理和开发各种基于<code>Node</code>环境的依赖包。它的主要功能有：</p>
+        <p>&ensp;&ensp;&ensp;&ensp;NodeJS作为JavaScript在后端运行的宿主平台，保留了浏览器中许多常见的JavaScript接口，在不额外给JavaScript语言附加其他特性的基础之上，将前端 <strong>异步</strong>、<strong>事件驱动</strong>、<strong>单线程</strong>的思想迁移到了服务端。基于其自身的这些特点，也使得NodeJS成为更适于处理 <strong>I/O密集</strong> 与 <strong>高并发</strong> 服务的后端技术选型。</p>
+<h2 id="模块机制"><a href="#模块机制" class="headerlink" title="模块机制"></a>模块机制</h2><h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>NodeJS借鉴了CommonJS的Module规范，实现了一套非常易用的<strong>同步</strong>模块系统。</p>
+<h4 id="模块引用"><a href="#模块引用" class="headerlink" title="模块引用"></a>模块引用</h4><p>在CommonJS规范中，通过<code>require</code>函数，接受一个小驼峰规范命名的模块名或者URI，引入指定的模块API到当前上下文中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> math = <span class="built_in">require</span>(<span class="string">&#x27;math&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="模块定义"><a href="#模块定义" class="headerlink" title="模块定义"></a>模块定义</h4><p>每一个模块（JS文件）都有一个类似于在浏览器中<code>document</code>的全局对象<code>module</code>，表示模块自身。它是NodeJS内部的<code>Module</code>类的对象实例。</p>
+<p>而每一个模块都有自己的私有作用域，所以开发者完全不用考虑变量全局污染的情况。要使用全局数据的话，需要将变量绑定在全局对象<code>global</code>上（类似前端的<code>window</code>）。</p>
+<p><code>module</code>上的属性<code>exports</code>表示模块暴露给外部的内容，即其他模块可以通过<code>require</code>函数引入的部分。</p>
+<p>需要注意：<strong>模块全局虽然存在一个<code>exports</code>对象，但它仅仅是一个指向<code>module.exports</code>的引用而已，直接给<code>exports</code>赋值只会改变它的引用对象，并不是修改了<code>module.exports</code>。这一点和浏览器环境下任何全局变量都会默认挂在<code>window</code>下是很不一样的。这也是为什么<code>module</code>更类似<code>document</code>而不是<code>window</code>。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出方式1：直接给exports属性赋值</span></span><br><span class="line"><span class="built_in">exports</span>.test = test;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出方式2：给整个modules.exports赋值</span></span><br><span class="line">modules.exports = &#123;</span><br><span class="line">    test,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 错误的导出方式</span></span><br><span class="line"><span class="comment"> * exports = &#123;</span></span><br><span class="line"><span class="comment"> *   test,</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>除了<code>exports</code>属性之外，<code>module</code>上的属性还有：</p>
+<ul>
+<li><p>module.id: 模块的识别符，通常是带有绝对路径的模块文件名;</p>
+</li>
+<li><p>module.filename: 模块的文件名，带有绝对路径;</p>
+</li>
+<li><p>module.loaded: 返回一个布尔值，表示模块是否已经完成加载;</p>
+</li>
+<li><p>module.parent: 返回一个对象，表示调用该模块的模块;</p>
+</li>
+<li><p>module.children: 返回一个数组，表示该模块要用到的其他模块。</p>
+</li>
+</ul>
+<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>不同于CommonJS规范同步加载模块的方式，AMD（Asynchronous Module Definition）规范则是异步加载模块的，允许指定回调函数。由于Node环境下使用的模块都存在本地，不存在网络阻塞的场景，因此采用同步的模块机制CommonJS。而对于浏览器这种依赖网络加载的环境，引入模块则更适于使用AMD规范。例如采用此规范的 <a target="_blank" rel="noopener" href="https://requirejs.org/">requireJS</a>。</p>
+<h4 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h4><p>通过<code>require</code>函数传入指定模块（模块名或模块URI）的数组，以及所有模块加载成功以后的回调函数。在所有模块加载成功以后，各个模块将作为参数传递给回调函数开始执行函数体。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">&#x27;//module/math&#x27;</span>, <span class="string">&#x27;//module/ramda&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params">math, R</span>) </span>&#123;</span><br><span class="line">  math.add(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">  R.add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="模块的定义"><a href="#模块的定义" class="headerlink" title="模块的定义"></a>模块的定义</h4><p>使用<code>define</code>函数定义模块，可以将模块对象作为参数，也可以传递一个导出模块数据的回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接定义模块对象</span></span><br><span class="line">define(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;test&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过回调定义模块</span></span><br><span class="line">define(<span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;test&#x27;</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当模块依赖其他模块时，基于回调定义</span></span><br><span class="line">define([<span class="string">&#x27;./module/a.js&#x27;</span>, <span class="string">&#x27;./module/b.js&#x27;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">m1, m2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name1</span>: m1.name,</span><br><span class="line">        <span class="attr">name2</span>: m2.name,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD（Common Module Definition）即通用模块定义,是国内发展出来的，就像AMD有个requireJS，CMD也有个浏览器的实现 <a target="_blank" rel="noopener" href="https://seajs.github.io/seajs/docs/">SeaJS</a> ，SeaJS要解决的问题和requireJS一样，只不过在模块定义方式和模块加载（可以说运行、解析）的时机上有所不同。</p>
+<p>在AMD中定义一个模块时，如果模块依赖其他模块，则需要在定义的同时声明模块依赖，也就是依赖前置。而CMD则推崇依赖就近原则，在真正需要使用依赖模块的时候再通过<code>require</code>引入。</p>
+<h4 id="模块引入"><a href="#模块引入" class="headerlink" title="模块引入"></a>模块引入</h4><p>模块的引入方式和AMD类似。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">seajs.use([<span class="string">&#x27;//module/math&#x27;</span>, <span class="string">&#x27;//module/ramda&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params">math, R</span>) </span>&#123;</span><br><span class="line">  math.add(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">  R.add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="模块定义-1"><a href="#模块定义-1" class="headerlink" title="模块定义"></a>模块定义</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMD模块定义</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">require</span>, <span class="built_in">exports</span>, <span class="built_in">module</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> $ = <span class="built_in">require</span>(<span class="string">&#x27;jquery&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`module info <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(<span class="built_in">module</span>)&#125;</span>`</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">exports</span>.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log($(<span class="string">&#x27;.app&#x27;</span>).html());</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p>UMD（Universal Module Definition）规范即通用模块定义规范，是AMD、CommonJS和定义全局模块的兼容策略。AMD模块以浏览器第一的原则发展，异步加载模块。CommonJS模块以服务器第一原则发展，选择同步加载。这迫使人们又想出另一个更通用的模式UMD。以此解决了跨平台与全局引用的模块化场景。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">&#x27;function&#x27;</span> &amp;&amp; define.amd) &#123;</span><br><span class="line">        <span class="comment">//AMD</span></span><br><span class="line">        define([<span class="string">&#x27;jquery&#x27;</span>], factory);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">exports</span> === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">//Node, CommonJS之类的</span></span><br><span class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">&#x27;jquery&#x27;</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//浏览器全局变量(root 即 window)</span></span><br><span class="line">        root.returnExports = factory(root.jQuery);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="built_in">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">myFunc</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="comment">//暴露公共方法</span></span><br><span class="line">    <span class="keyword">return</span> myFunc;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="ESM"><a href="#ESM" class="headerlink" title="ESM"></a>ESM</h3><p>ESM（ECMAScript Module）是用于处理模块化的 ECMAScript 标准。 虽然 NodeJS 长期使用 CommonJS 标准，但CommonJS只是社区提供的解决方案。而真正官方认定的统一模块标准，则是由ECMA（欧洲计算机制造商协会）伴随着ES6标准提出的ES Module。<strong>是同时支持服务端和前端的模块化标准</strong>。</p>
+<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><ul>
+<li>ESM 自动采用严格模式，忽略 ‘use strict’；</li>
+<li>每个 ES Module 都是运行在单独的私有作用域中；</li>
+<li>ESM 是通过 CORS（跨域） 的方式请求外部 JS 模块的；</li>
+<li>ESM 的 script 标签会延迟执行脚本(浏览器页面渲染后执行)。</li>
+</ul>
+<h4 id="模块定义-2"><a href="#模块定义-2" class="headerlink" title="模块定义"></a>模块定义</h4><p>ESM规定，模块必须是一个单独的文件，引入、导出的操作只允许在模块中进行（所以尝试在控制台或者script标签中使用import导入模块时，会抛出语法错误）。</p>
+<h2 id="NPM包管理工具"><a href="#NPM包管理工具" class="headerlink" title="NPM包管理工具"></a>NPM包管理工具</h2><p><code>NPM</code>是随着<code>NodeJS</code>一同安装的包管理工具，为用户提供了方便、快捷的管理和开发各种基于<code>Node</code>环境的依赖包。它的主要功能有：</p>
 <ol>
 <li>允许用户从NPM服务器下载别人编写的第三方包到本地使用；</li>
 <li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用；</li>
 <li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
 </ol>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令:"></a>常用命令:</h4><ol>
-<li><code>NPM</code>版本信息<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure></li>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ol>
+<li><code>NPM</code>版本信息<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v // npm --version</span><br></pre></td></tr></table></figure></li>
 <li>在项目中安装<code>NPM</code>依赖，并依据<code>package.json</code>安装各类依赖（生成<code>package-lock.json</code>）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></li>
 <li><code>NPM</code>版本更新<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install npm@latest -g</span><br></pre></td></tr></table></figure></li>
 <li>全局安装依赖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install x -g</span><br></pre></td></tr></table></figure></li>
@@ -404,16 +422,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/basis/" rel="tag"># basis</a>
-          
-            <a href="/tags/js/" rel="tag"># js</a>
-          
-            <a href="/tags/node/" rel="tag"># node</a>
-          
-        </div>
       
 
       
@@ -515,7 +523,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -526,7 +534,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -537,7 +545,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -592,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">模块机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS"><span class="nav-number">1.1.</span> <span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">模块定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">1.3.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NPM"><span class="nav-number">1.5.</span> <span class="nav-text">NPM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.5.1.</span> <span class="nav-text">常用命令:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json%E4%B8%8Epackage-lock-json%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.2.</span> <span class="nav-text">package.json与package-lock.json的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-install%E4%B8%8Enpm-i%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88Windows%E4%B8%8B%EF%BC%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">npm install与npm i的区别（Windows下）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5I-O%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9EI-O"><span class="nav-number">2.</span> <span class="nav-text">异步I&#x2F;O与非阻塞I&#x2F;O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">异步编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">内存控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer"><span class="nav-number">5.</span> <span class="nav-text">Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">网络编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAWeb%E5%BA%94%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">构建Web应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">8.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">9.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">模块机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS"><span class="nav-number">1.1.</span> <span class="nav-text">CommonJS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">模块引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">模块定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">1.2.</span> <span class="nav-text">AMD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BC%95%E5%85%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">模块的引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">模块的定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">1.3.</span> <span class="nav-text">CMD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.1.</span> <span class="nav-text">模块引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%AE%9A%E4%B9%89-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">模块定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UMD"><span class="nav-number">1.4.</span> <span class="nav-text">UMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ESM"><span class="nav-number">1.5.</span> <span class="nav-text">ESM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7"><span class="nav-number">1.5.1.</span> <span class="nav-text">基本特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%AE%9A%E4%B9%89-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">模块定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPM%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">NPM包管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.0.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json%E4%B8%8Epackage-lock-json%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.0.2.</span> <span class="nav-text">package.json与package-lock.json的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm-install%E4%B8%8Enpm-i%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88Windows%E4%B8%8B%EF%BC%89"><span class="nav-number">2.0.3.</span> <span class="nav-text">npm install与npm i的区别（Windows下）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5I-O%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9EI-O"><span class="nav-number">3.</span> <span class="nav-text">异步I&#x2F;O与非阻塞I&#x2F;O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">异步编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">内存控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer"><span class="nav-number">6.</span> <span class="nav-text">Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">7.</span> <span class="nav-text">网络编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAWeb%E5%BA%94%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">构建Web应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">10.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -612,7 +620,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
